@@ -1,9 +1,7 @@
 package claseHotel;
 
 import clases.Habitacion;
-import gestor.Gestor;
-import gestor.GestorHabitacion;
-import gestor.GestorReserva;
+import gestor.*;
 
 public class Hotel {
 
@@ -13,6 +11,8 @@ public class Hotel {
     //declarar todos los gestores
     private GestorHabitacion gestorHabitacion;
     private GestorReserva gestorReserva;
+    private GestorCliente gestorCliente;
+    private GestorPersonal gestorPersonal;
 
     public Hotel(String nombre, String ubicacion) {
         this.nombre = nombre;
@@ -20,6 +20,8 @@ public class Hotel {
         //inicializar todos los gestores
         this.gestorHabitacion = new GestorHabitacion();//los inicializamos vacíos
         this.gestorReserva = new GestorReserva();//los inicializamos vacíos
+        this.gestorCliente = new GestorCliente();
+        this.gestorPersonal = new GestorPersonal();
     }
 
     public String getNombre() {
@@ -46,6 +48,10 @@ public class Hotel {
     public GestorReserva getGestorReserva() {
         return gestorReserva;
     }
+
+    public GestorCliente getGestorCliente() { return gestorCliente; }
+
+    public GestorPersonal getGestorPersonal() { return gestorPersonal; }
 
     @Override
     public String toString() {

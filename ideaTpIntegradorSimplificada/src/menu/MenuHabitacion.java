@@ -15,7 +15,6 @@ public class MenuHabitacion {
 
         boolean continuar = true;
         while (continuar) {
-
             System.out.println("Gestion Habitaciones");
             System.out.println("1.Agregar habitaciones por defecto");
             System.out.println("2.Agregar habitacion");

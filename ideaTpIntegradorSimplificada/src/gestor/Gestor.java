@@ -1,12 +1,11 @@
 package gestor;
 
-import clases.Habitacion;
 import excepcions.ListaVaciaException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gestor <T>{
+public abstract class Gestor <T>{
 
     protected List<T>lista;
 
@@ -49,6 +48,9 @@ public class Gestor <T>{
         }
         return t;
     }
+
+    //Buscar elemento por texto (metodo usado para eliminar persona,agregar comentario a cliente y modificar datos cliente. Devuelve el indice para modificar elemento desde la lista )
+    public abstract int buscarIndicePorTexto(String textoABuscar);
 
     //-----------Metodos exclusivos de las clases----------------//
 

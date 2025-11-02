@@ -22,15 +22,15 @@ public class GestorReserva extends Gestor<Reserva>{
                                             int pax) throws ListaVaciaException {
 
 
-        // 1️⃣ Filtrar habitaciones por capacidad
+        //Filtrar habitaciones por capacidad
         List<Habitacion> habitacionesPosibles = gestorHabitacion.listarHabitacionesXcapacidad(pax);
 
-        // 2️⃣ Si no hay reservas aún, devolver directamente la primera habitación posible
+        //Si no hay reservas aún, devolver directamente la primera habitación posible
         if (lista.isEmpty()) {
             return habitacionesPosibles.get(0);
         }
 
-        // 3️⃣ Si hay reservas, verificar disponibilidad por fechas
+        //Si hay reservas, verificar disponibilidad por fechas
         List<Habitacion> habitacionesDisponibles = new ArrayList<>();
 
         for (Habitacion h : habitacionesPosibles) {
@@ -38,7 +38,7 @@ public class GestorReserva extends Gestor<Reserva>{
 
             for (Reserva r : lista) {
                 if (r.getHabitacion().equals(h)) {
-                    // ✅ Permitir ocupar el mismo día que otra reserva se libera
+                    //Permitir ocupar el mismo día que otra reserva se libera
                     boolean noSolapa = egreso.isBefore(r.getFechaIngreso()) || egreso.isEqual(r.getFechaIngreso())
                             || ingreso.isAfter(r.getFechaEgreso()) || ingreso.isEqual(r.getFechaEgreso());
 
@@ -54,11 +54,11 @@ public class GestorReserva extends Gestor<Reserva>{
             }
         }
 
-        // 4️⃣ Si no se encontró ninguna disponible
+        //Si no se encontró ninguna disponible
         if (habitacionesDisponibles.isEmpty()) {
             throw new ListaVaciaException("No hay habitaciones disponibles para esas fechas y cantidad de personas.");
         }
-        // 5️⃣ Retorna la primera disponible
+        //Retorna la primera disponible
         return habitacionesDisponibles.get(0);
     }
 
@@ -137,7 +137,9 @@ public class GestorReserva extends Gestor<Reserva>{
         return (double) cantNoches / (double) contadorReservas;
     }
 
-
-
-
+    //Implementacion metodo abstracto
+    @Override
+    public int buscarIndicePorTexto(String textoABuscar) {
+        return 0;
+    }
 }

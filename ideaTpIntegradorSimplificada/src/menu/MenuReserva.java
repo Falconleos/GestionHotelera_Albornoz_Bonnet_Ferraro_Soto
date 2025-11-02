@@ -36,7 +36,7 @@ public class MenuReserva {
             try {
                 opcion = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("⚠ Formato inválido. Ingrese un número.");
+                System.out.println("Formato inválido. Ingrese un número.");
                 continue;
             }
 
@@ -75,12 +75,8 @@ public class MenuReserva {
     }
 
     public static void generarReserva(Scanner sc, GestorHabitacion gestorHabitacion, GestorReserva gestorReserva){
-
-
             try {
-
                 System.out.println("=== GENERAR RESERVA ===");
-
                 try {
                     if(gestorHabitacion.getLista().isEmpty()){
                         throw new ListaVaciaException("Lista vacía...");
@@ -90,7 +86,7 @@ public class MenuReserva {
                     return;
                 }
 
-                // 1️⃣ Pedir fechas
+                //Pedir fechas
                 System.out.print("Fecha de ingreso (yyyy-MM-dd): ");
                 LocalDate ingreso = LocalDate.parse(sc.nextLine());
 
@@ -103,15 +99,15 @@ public class MenuReserva {
                 LocalDate egreso = LocalDate.parse(sc.nextLine());
 
                 if (!egreso.isAfter(ingreso)) {
-                    System.out.println("⚠ La fecha de egreso debe ser posterior a la de ingreso.");
+                    System.out.println("La fecha de egreso debe ser posterior a la de ingreso.");
                     return;
                 }
 
-                // 2️⃣ Pedir cantidad de personas
+                //Pedir cantidad de personas
                 System.out.print("Cantidad de personas: ");
                 int pax = Integer.parseInt(sc.nextLine());
 
-                // 3️⃣ Intentar seleccionar habitación
+                //Intentar seleccionar habitación
                 Habitacion habitacion = null;
 
                 habitacion = gestorReserva.seleccionarHabitacion(gestorHabitacion, ingreso, egreso, pax);
@@ -138,7 +134,7 @@ public class MenuReserva {
                 String respuesta = sc.nextLine();
 
                 if(respuesta.equalsIgnoreCase("s")){
-                    // 4️⃣ Pedir datos del huésped
+                    //Pedir datos del huésped
                     System.out.print("Nombre del huésped: ");
                     String nombre = sc.nextLine();
                     System.out.print("Apellido del huésped: ");
@@ -149,12 +145,12 @@ public class MenuReserva {
                     long noches = ChronoUnit.DAYS.between(ingreso, egreso);
                     double valorTotal = noches * habitacion.getPrecio();
 
-                    // 5️⃣ Crear reserva
+                    //Crear reserva
                     Reserva reserva = new Reserva(ingreso, egreso, pax, noches, habitacion, valorTotal, nombre, apellido, celular, "sin detalles extra", "Recepción");
 
                     gestorReserva.agregar(reserva);
 
-                    System.out.println("🎉 Reserva creada con éxito!");
+                    System.out.println("Reserva creada con éxito!");
                     System.out.println(reserva);
                 }else{
                     System.out.println("Reserva rechazada...");
@@ -163,8 +159,5 @@ public class MenuReserva {
             }catch (DateTimeException e){
                 System.out.println("Fecha invalida...");
             }
-
     }
-
-
 }

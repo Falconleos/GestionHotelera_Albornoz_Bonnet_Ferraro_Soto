@@ -81,4 +81,11 @@ public class GestorHabitacion extends Gestor<Habitacion>{
         System.out.println("Habitaciones orenadas por capacidad maxima...");
     }
 
+    //Implementar metodo abstracto
+
+
+    @Override
+    public int buscarIndicePorTexto(String textoABuscar) {
+        return 0;
+    }
 }

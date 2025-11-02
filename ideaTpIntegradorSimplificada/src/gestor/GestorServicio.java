@@ -14,4 +14,11 @@ public class GestorServicio extends Gestor<Servicio>{
         return null;
     }
 
+    //Implementacion metodo abstracto
+
+
+    @Override
+    public int buscarIndicePorTexto(String textoABuscar) {
+        return 0;
+    }
 }

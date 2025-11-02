@@ -3,23 +3,15 @@ package menu;
 import clases.Personal;
 import enums.Rol;
 import enums.Turno;
-import gestores.GestorPersonal;
+import excepcions.PersonaNoEncontradaException;
+import gestor.GestorPersonal;
 
 import java.util.Scanner;
 
 public class MenuPersonal {
 
     //Se podrian reemplzar la seleccion del turno y rol y sus filtrados con sout en vez de .values, que no vimos en la materia
-
-    private GestorPersonal gestorPersonal;
-    private Scanner sc;
-
-    public MenuPersonal(GestorPersonal gestorPersonal) {
-        this.gestorPersonal = gestorPersonal;
-        this.sc = new Scanner(System.in);
-    }
-
-    public void mostrarMenu() {
+    public static void mostrarMenu(Scanner sc, GestorPersonal gestorPersonal) throws PersonaNoEncontradaException {
         boolean salir = false;
 
         while (!salir) {
@@ -36,19 +28,19 @@ public class MenuPersonal {
 
             switch (opcion) {
                 case 1:
-                    agregarPersonal();
+                    agregarPersonal(sc, gestorPersonal);
                     break;
                 case 2:
-                    eliminarPersonal();
+                    eliminarPersonal(sc, gestorPersonal);
                     break;
                 case 3:
-                    gestorPersonal.mostrarPersonas();
+                    gestorPersonal.mostrar();
                     break;
                 case 4:
-                    filtrarPorRol();
+                    filtrarPorRol(sc, gestorPersonal);
                     break;
                 case 5:
-                    filtrarPorTurno();
+                    filtrarPorTurno(sc, gestorPersonal);
                     break;
                 case 0:
                     salir = true;
@@ -60,7 +52,7 @@ public class MenuPersonal {
         }
     }
 
-    private void agregarPersonal() {
+    private static void agregarPersonal(Scanner sc, GestorPersonal gestorPersonal) {
         System.out.print("DNI: ");
         String dni = sc.nextLine();
         System.out.print("Nombre: ");
@@ -85,16 +77,19 @@ public class MenuPersonal {
         Turno turno = Turno.values()[turnoIndex];
 
         Personal nuevo = new Personal(dni, nombre, apellido, celular, rol, turno);
-        gestorPersonal.agregarPersona(nuevo);
+        gestorPersonal.agregar(nuevo);
     }
 
-    private void eliminarPersonal() {
+    private static void eliminarPersonal(Scanner sc, GestorPersonal gestorPersonal) throws PersonaNoEncontradaException {
         System.out.print("Ingrese DNI del personal a eliminar: ");
         String dni = sc.nextLine();
-        gestorPersonal.eliminarPersonaPorDni(dni);
+
+        int indiceElementoAEliminar = gestorPersonal.buscarIndicePorTexto(dni);
+        if (indiceElementoAEliminar < 0) throw new PersonaNoEncontradaException("Personal no encontrado");
+        gestorPersonal.eliminar(gestorPersonal.getLista().get(indiceElementoAEliminar));
     }
 
-    private void filtrarPorRol() {
+    private static void filtrarPorRol(Scanner sc, GestorPersonal gestorPersonal) {
         System.out.println("Seleccione Rol para filtrar: ");
         for (Rol r : Rol.values()) {
             System.out.println(r.ordinal() + 1 + ". " + r);
@@ -104,7 +99,7 @@ public class MenuPersonal {
         gestorPersonal.filtrarXRol(rol);
     }
 
-    private void filtrarPorTurno() {
+    private static void filtrarPorTurno(Scanner sc, GestorPersonal gestorPersonal) {
         System.out.println("Seleccione Turno para filtrar: ");
         for (Turno t : Turno.values()) {
             System.out.println(t.ordinal() + 1 + ". " + t);
