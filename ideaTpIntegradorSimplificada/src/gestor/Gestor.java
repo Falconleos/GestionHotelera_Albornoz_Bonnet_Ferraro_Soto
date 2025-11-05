@@ -33,8 +33,7 @@ public abstract class Gestor <T>{
 
     public void mostrar()throws ListaVaciaException {
         if(lista.isEmpty()){
-            String tipo = lista.getClass().getSimpleName();
-            throw new ListaVaciaException("Aun no hay elementos de tipo " + tipo + " almacenados en la lista...");
+            throw new ListaVaciaException("Aun no hay elementos que mostrar...");
         }
         for(T t : lista){
             System.out.println(t);

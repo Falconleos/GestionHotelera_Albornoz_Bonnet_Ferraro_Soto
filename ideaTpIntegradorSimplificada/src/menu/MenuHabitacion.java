@@ -1,5 +1,6 @@
 package menu;
 
+import claseHotel.Hotel;
 import clases.Habitacion;
 import clases.Reserva;
 import excepcions.ListaVaciaException;
@@ -17,6 +18,7 @@ public class MenuHabitacion {
 
         boolean continuar = true;
         while (continuar) {
+            Hotel.limpiarPantallaSubMenu();
             System.out.println("Gestion Habitaciones");
             System.out.println("1.Agregar habitaciones por defecto");
             System.out.println("2.Agregar habitacion");

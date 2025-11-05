@@ -1,5 +1,6 @@
 package menu;
 
+import claseHotel.Hotel;
 import clases.*;
 import excepcions.ListaVaciaException;
 import gestor.*;
@@ -13,9 +14,10 @@ public class MenuEstadia {
     public static void mostrarMenu(GestorEstadia gestorEstadia, GestorReserva gestorReserva,
                             GestorCliente gestorCliente, GestorServicio gestorServicio,
                             GestorHabitacion gestorHabitacion,Scanner sc) {
-        boolean salir = false;
 
+        boolean salir = false;
         while (!salir) {
+            Hotel.limpiarPantallaSubMenu();
             System.out.println("\n--- MENÚ ESTADÍAS ---");
             System.out.println("1. Crear estadía");
             System.out.println("2. Listar estadías");
@@ -32,16 +34,34 @@ public class MenuEstadia {
                     crearEstadia(sc,gestorReserva,gestorHabitacion,gestorCliente,gestorServicio,gestorEstadia);
                     break;
                 case 2:
-                    gestorEstadia.mostrar();
+
+                    try {
+                        gestorEstadia.mostrar();
+                    }catch (ListaVaciaException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 3:
                     //cancelar si la estadia esta paga...
                     break;
                 case 4:
-                    buscarEstadiaXhabitacion(sc,gestorHabitacion,gestorEstadia);
+
+                    try {
+                        buscarEstadiaXhabitacion(sc,gestorHabitacion,gestorEstadia);
+                    }catch (ListaVaciaException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 5:
-                    buscarEstadiaXapellido(sc,gestorCliente,gestorEstadia);
+
+                    try {
+                        buscarEstadiaXapellido(sc,gestorCliente,gestorEstadia);
+                    }catch (ListaVaciaException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 0:
                     salir = true;
@@ -245,6 +265,10 @@ public class MenuEstadia {
 
     public static void buscarEstadiaXhabitacion(Scanner sc,GestorHabitacion gestorHabitacion,GestorEstadia gestorEstadia){
 
+        if (gestorEstadia.getLista().isEmpty()){
+            throw new ListaVaciaException("Aun no hay estadias cargadas...");
+        }
+
         System.out.println("Ingrese el numero de habitacion:");
         int numeroHabitacion = 0;
 
@@ -274,6 +298,10 @@ public class MenuEstadia {
     }
 
     public static void buscarEstadiaXapellido(Scanner sc,GestorCliente gestorCliente,GestorEstadia gestorEstadia){
+
+        if (gestorEstadia.getLista().isEmpty()){
+            throw new ListaVaciaException("Aun no hay estadias cargadas...");
+        }
 
         System.out.println("Ingrese el apellido:");
         String apellidoCliente = sc.nextLine();

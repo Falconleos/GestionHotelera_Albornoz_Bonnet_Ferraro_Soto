@@ -1,5 +1,6 @@
 package menu;
 
+import claseHotel.Hotel;
 import gestor.*;
 
 import java.util.Scanner;
@@ -12,6 +13,7 @@ public class MenuPago {
         boolean salir = false;
 
         while (!salir) {
+            Hotel.limpiarPantallaSubMenu();
             System.out.println("\n--- MENÚ PAGO ---");
             System.out.println("1. ");
             System.out.println("2. ");

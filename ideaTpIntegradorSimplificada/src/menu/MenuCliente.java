@@ -1,5 +1,6 @@
 package menu;
 
+import claseHotel.Hotel;
 import clases.Cliente;
 import excepcions.PersonaNoEncontradaException;
 import gestor.GestorCliente;
@@ -14,6 +15,7 @@ public class MenuCliente {
         boolean salir = false;
 
         while (!salir) {
+            Hotel.limpiarPantallaSubMenu();
             System.out.println("\n===== MENÚ CLIENTE =====");
             System.out.println("1. Agregar Cliente");
             System.out.println("2. Eliminar Cliente");

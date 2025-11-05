@@ -19,15 +19,16 @@ public class MenuPrincipal {
         boolean continuar = true;
 
         while (continuar){
-
+            Hotel.limpiarPantallaMenu();
             System.out.println("Menu Hotel: " + hotel.getNombre() + " Ubicacion: " + hotel.getUbicacion());
-            System.out.println("1.Gestion de Habitaciones");
-            System.out.println("2.Gestion de Reservas");
+            System.out.println("1. Gestion de Habitaciones");
+            System.out.println("2. Gestion de Reservas");
             System.out.println("3. Gestion de Clientes");
             System.out.println("4. Gestion del Personal");
-            System.out.println("5. Gestion de Estadía");
-            System.out.println("6. Gestion de Cuenta");
-            System.out.println("7. Gestion de Pago");
+            System.out.println("5. Gestion de Estadías");
+            System.out.println("6. Gestion de Cuentas");
+            System.out.println("7. Gestion de Pagos");
+            System.out.println("8. Gestion de Servicios");
             System.out.println("0.Salir");
             System.out.println("Elija la opcion:");
 
@@ -62,6 +63,9 @@ public class MenuPrincipal {
                     break;
                 case 7:
                     MenuPago.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    break;
+                case 8:
+                    MenuServicio.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
                     break;
                 case 0:
                     continuar = false;

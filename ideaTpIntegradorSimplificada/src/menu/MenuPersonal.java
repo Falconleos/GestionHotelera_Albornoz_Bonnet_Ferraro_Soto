@@ -1,5 +1,6 @@
 package menu;
 
+import claseHotel.Hotel;
 import clases.Personal;
 import enums.Rol;
 import enums.Turno;
@@ -15,6 +16,7 @@ public class MenuPersonal {
         boolean salir = false;
 
         while (!salir) {
+            Hotel.limpiarPantallaSubMenu();
             System.out.println("\n===== MENÚ PERSONAL =====");
             System.out.println("1. Agregar Personal");
             System.out.println("2. Eliminar Personal");

@@ -84,4 +84,17 @@ public class Hotel {
                 ", ubicacion='" + ubicacion + '\'' +
                 '}';
     }
+
+    public static void limpiarPantallaMenu(){
+        for(int i = 0;i<50;i++){
+            System.out.println("");
+        }
+    }
+
+    public static void limpiarPantallaSubMenu(){
+        for(int i = 0;i<3;i++){
+            System.out.println("");
+        }
+    }
+
 }

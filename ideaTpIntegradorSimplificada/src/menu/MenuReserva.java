@@ -1,5 +1,6 @@
 package menu;
 
+import claseHotel.Hotel;
 import clases.Habitacion;
 import clases.Reserva;
 import excepcions.ListaVaciaException;
@@ -19,7 +20,7 @@ public class MenuReserva {
 
         boolean continuar = true;
         while (continuar) {
-
+            Hotel.limpiarPantallaSubMenu();
             System.out.println("Gestion Reservas");
             System.out.println("1.Generar Reserva");
             System.out.println("2.Ver Checks in del día");
@@ -65,7 +66,13 @@ public class MenuReserva {
                     cancelarReserva(sc,gestorReserva);
                     break;
                 case 8:
-                    gestorReserva.mostrar();
+
+                    try {
+                        gestorReserva.mostrar();
+                    }catch (ListaVaciaException e){
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 0:
                     continuar = false;
@@ -104,7 +111,7 @@ public class MenuReserva {
                 LocalDate egreso = LocalDate.parse(sc.nextLine());
 
                 if (!egreso.isAfter(ingreso)) {
-                    System.out.println("La fecha de egreso debe ser posterior a la de ingreso.");
+                    System.out.println("La fecha de egreso debe ser anterior o igual a la de ingreso.");
                     return;
                 }
 
@@ -140,11 +147,11 @@ public class MenuReserva {
 
                 if(respuesta.equalsIgnoreCase("s")){
                     //Pedir datos del huésped
-                    System.out.print("Nombre del huésped: ");
+                    System.out.print("Nombre referencial de reserva: ");
                     String nombre = sc.nextLine();
-                    System.out.print("Apellido del huésped: ");
+                    System.out.print("Apellido referencial de reserva: ");
                     String apellido = sc.nextLine();
-                    System.out.print("Celular de contacto: ");
+                    System.out.print("Celular referencial de reserva: ");
                     String celular = sc.nextLine();
 
                     long noches = ChronoUnit.DAYS.between(ingreso, egreso);
