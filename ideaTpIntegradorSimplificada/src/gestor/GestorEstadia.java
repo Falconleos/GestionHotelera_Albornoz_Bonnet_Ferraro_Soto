@@ -1,0 +1,64 @@
+package gestor;
+
+import clases.Estadia;
+import excepcions.ListaVaciaException;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GestorEstadia extends Gestor<Estadia>{
+
+    @Override
+    public int buscarIndicePorTexto(String textoABuscar) {
+        return 0;
+    }
+
+    private void validarListaVacia() throws ListaVaciaException {
+        if (lista.isEmpty()) {
+            throw new ListaVaciaException("Aún no hay estadias cargadas...");
+        }
+    }
+
+    public Estadia buscarEstadiaXHabitacion(int numHabitacion) {
+        validarListaVacia();
+
+        Estadia estadiaEncontrada = null;
+        LocalDate hoy = LocalDate.now();
+
+        for (Estadia estadia : lista) {
+
+            boolean mismaHabitacion = estadia.getNumHabitacion() == numHabitacion;
+
+            boolean dentroDeFechas =
+                    (hoy.isEqual(estadia.getFechaCheckIn()) ||
+                            hoy.isEqual(estadia.getFechaCheckOut()) ||
+                            (hoy.isAfter(estadia.getFechaCheckIn()) && hoy.isBefore(estadia.getFechaCheckOut())));
+
+            if (mismaHabitacion && dentroDeFechas) {
+                estadiaEncontrada = estadia;
+                break;
+            }
+        }
+        return estadiaEncontrada;
+    }
+
+    public List<Estadia>buscarEstadiaPorApellido(String apellido){
+        validarListaVacia();
+        List<Estadia>estadiasEncontradas = new ArrayList<>();
+        LocalDate hoy = LocalDate.now();
+            for(Estadia e : lista){
+                if(e.getCliente().getApellido().equalsIgnoreCase(apellido)
+                    &&   (hoy.isEqual(e.getFechaCheckIn()) ||
+                        hoy.isEqual(e.getFechaCheckOut()) ||
+                        (hoy.isAfter(e.getFechaCheckIn()) && hoy.isBefore(e.getFechaCheckOut())))
+                ){
+                    estadiasEncontradas.add(e);
+                }
+            }
+        return estadiasEncontradas;
+    }
+
+
+
+}

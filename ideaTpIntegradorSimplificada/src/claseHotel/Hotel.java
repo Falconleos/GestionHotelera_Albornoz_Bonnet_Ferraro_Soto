@@ -13,15 +13,23 @@ public class Hotel {
     private GestorReserva gestorReserva;
     private GestorCliente gestorCliente;
     private GestorPersonal gestorPersonal;
+    private GestorEstadia gestorEstadia;
+    private GestorServicio gestorServicio;
+    private GestorCuenta gestorCuenta;
+    private GestorPago gestorPago;
 
     public Hotel(String nombre, String ubicacion) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         //inicializar todos los gestores
         this.gestorHabitacion = new GestorHabitacion();//los inicializamos vacíos
-        this.gestorReserva = new GestorReserva();//los inicializamos vacíos
+        this.gestorReserva = new GestorReserva();
         this.gestorCliente = new GestorCliente();
         this.gestorPersonal = new GestorPersonal();
+        this.gestorEstadia = new GestorEstadia();
+        this.gestorServicio = new GestorServicio();
+        this.gestorCuenta = new GestorCuenta();
+        this.gestorPago = new GestorPago();
     }
 
     public String getNombre() {
@@ -52,6 +60,22 @@ public class Hotel {
     public GestorCliente getGestorCliente() { return gestorCliente; }
 
     public GestorPersonal getGestorPersonal() { return gestorPersonal; }
+
+    public GestorEstadia getGestorEstadia() {
+        return gestorEstadia;
+    }
+
+    public GestorServicio getGestorServicio() {
+        return gestorServicio;
+    }
+
+    public GestorCuenta getGestorCuenta() {
+        return gestorCuenta;
+    }
+
+    public GestorPago getGestorPago() {
+        return gestorPago;
+    }
 
     @Override
     public String toString() {

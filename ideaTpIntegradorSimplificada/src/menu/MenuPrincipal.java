@@ -25,6 +25,9 @@ public class MenuPrincipal {
             System.out.println("2.Gestion de Reservas");
             System.out.println("3. Gestion de Clientes");
             System.out.println("4. Gestion del Personal");
+            System.out.println("5. Gestion de Estadía");
+            System.out.println("6. Gestion de Cuenta");
+            System.out.println("7. Gestion de Pago");
             System.out.println("0.Salir");
             System.out.println("Elija la opcion:");
 
@@ -50,6 +53,15 @@ public class MenuPrincipal {
                     break;
                 case 4:
                     MenuPersonal.mostrarMenu(sc, hotel.getGestorPersonal());
+                    break;
+                case 5:
+                    MenuEstadia.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    break;
+                case 6:
+                    MenuCuenta.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    break;
+                case 7:
+                    MenuPago.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
                     break;
                 case 0:
                     continuar = false;

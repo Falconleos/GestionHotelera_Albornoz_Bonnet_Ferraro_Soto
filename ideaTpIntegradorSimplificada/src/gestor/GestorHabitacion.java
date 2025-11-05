@@ -37,6 +37,15 @@ public class GestorHabitacion extends Gestor<Habitacion>{
         return null;
     }
 
+    public boolean existeHabitacion(int numero)throws ListaVaciaException{
+        for(Habitacion h : lista){
+            if(h.getNumero() == numero){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void aumentarValorHabitacionesPorcentaje(int porcentaje)throws ListaVaciaException{
         validarListaVacia();
         for(Habitacion h : lista){

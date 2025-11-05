@@ -52,6 +52,5 @@ public abstract class Gestor <T>{
     //Buscar elemento por texto (metodo usado para eliminar persona,agregar comentario a cliente y modificar datos cliente. Devuelve el indice para modificar elemento desde la lista )
     public abstract int buscarIndicePorTexto(String textoABuscar);
 
-    //-----------Metodos exclusivos de las clases----------------//
 
 }

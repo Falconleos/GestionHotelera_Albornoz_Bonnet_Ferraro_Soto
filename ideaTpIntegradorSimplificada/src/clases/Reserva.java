@@ -33,6 +33,9 @@ public class Reserva {
         this.personalResponsable = personalResponsable;
     }
 
+    public Reserva() {
+    }
+
     public int getIdReserva() {
         return idReserva;
     }

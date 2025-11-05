@@ -7,12 +7,13 @@ import excepcions.ListaVaciaException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class GestorReserva extends Gestor<Reserva>{
 
     private void validarListaVacia() throws ListaVaciaException {
         if (lista.isEmpty()) {
-            throw new ListaVaciaException("Aún no hay habitaciones cargadas...");
+            throw new ListaVaciaException("Aún no hay reservas cargadas...");
         }
     }
 
@@ -109,17 +110,6 @@ public class GestorReserva extends Gestor<Reserva>{
         return filtradas;
     }
 
-    public List<Reserva>listarPorRangoFechas(LocalDate inferior,LocalDate superior){
-        validarListaVacia();
-        List<Reserva>filtradas = new ArrayList<>();
-        for(Reserva r : lista){
-            if(!r.getFechaIngreso().isAfter(superior) && !r.getFechaEgreso().isBefore(inferior)){
-                filtradas.add(r);
-            }
-        }
-        return filtradas;
-    }
-
     public double calcularPromedioPlazosReservas(){
 
         validarListaVacia();
@@ -135,6 +125,18 @@ public class GestorReserva extends Gestor<Reserva>{
 
 
         return (double) cantNoches / (double) contadorReservas;
+    }
+
+    public List<Reserva> buscarReservaPorApellido(String apellido,GestorReserva gestorReserva){
+        validarListaVacia();
+        List<Reserva>filtradas = new ArrayList<>();
+
+        for(Reserva r : gestorReserva.getLista()){
+            if(r.getApellidoReferencia().equalsIgnoreCase(apellido)){
+                filtradas.add(r);
+            }
+        }
+        return filtradas;
     }
 
     //Implementacion metodo abstracto

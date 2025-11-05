@@ -2,6 +2,8 @@ package gestor;
 
 
 import clases.Cliente;
+import clases.Habitacion;
+import excepcions.ListaVaciaException;
 
 
 public class GestorCliente extends Gestor <Cliente> {
@@ -25,6 +27,16 @@ public class GestorCliente extends Gestor <Cliente> {
         }
         return -1; // devuelve -1 si no se encontró
     }
+
+    public boolean existeCliente(String apellido)throws ListaVaciaException {
+        for(Cliente cliente : lista){
+            if(cliente.getApellido().equalsIgnoreCase(apellido)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 

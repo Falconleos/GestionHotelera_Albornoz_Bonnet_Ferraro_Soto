@@ -1,11 +1,13 @@
 package menu;
 
 import clases.Habitacion;
+import clases.Reserva;
 import excepcions.ListaVaciaException;
 import excepcions.PrecioInvalidoException;
 import gestor.GestorHabitacion;
 import gestor.GestorReserva;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -62,8 +64,10 @@ public class MenuHabitacion {
                     aumentarValorHabitaciones(sc,gestorHabitacion);
                     break;
                 case 8:
+                    rebajarValorHabitaciones(sc,gestorHabitacion);
                     break;
                 case 9:
+                    listarHabitacionesSinReserva(gestorHabitacion,gestorReserva);
                     break;
                 case 0:
                     continuar = false;
@@ -305,6 +309,75 @@ public class MenuHabitacion {
         }catch (NumberFormatException e){
             System.out.println("Porcentaje invalido...");
         }
+    }
+
+
+    public static void rebajarValorHabitaciones(Scanner sc,GestorHabitacion gestorHabitacion){
+
+        try{
+
+            System.out.println("Ingrese el porcentaje a rebajar:");
+            int porcentaje = Integer.parseInt(sc.nextLine());
+
+            gestorHabitacion.rebajarValorHabitacionesPorcentaje(porcentaje);
+
+            System.out.println("Todas las habitaciones rebajadas un " + porcentaje + "%");
+
+
+        }catch (ListaVaciaException e){
+            System.out.println(e.getMessage());
+        }catch (NumberFormatException e){
+            System.out.println("Porcentaje invalido...");
+        }
+    }
+
+    public static void listarHabitacionesSinReserva(GestorHabitacion gestorHabitacion,GestorReserva gestorReserva){
+
+        try{
+
+            System.out.println("Lista de habitaciones sin reserva:");
+
+            if (gestorHabitacion.getLista().isEmpty()) {
+                throw new ListaVaciaException("No hay habitaciones cargadas.");
+            }
+
+            if(gestorReserva.getLista().isEmpty()){
+                System.out.println(gestorHabitacion.getLista());
+                return;
+            }
+
+
+            List<Habitacion>habitacionesSinReserva = new ArrayList<>();
+
+            for(Habitacion habitacion : gestorHabitacion.getLista()){
+                boolean estaReservada = false;
+
+                for(Reserva reserva : gestorReserva.getLista()){
+
+                    if(reserva.getHabitacion().getIdHabitacion() == habitacion.getIdHabitacion()){
+                        estaReservada = true;
+                        break;
+                    }
+                }
+
+                if(!estaReservada){
+                    habitacionesSinReserva.add(habitacion);
+                }
+            }
+
+            if (habitacionesSinReserva.isEmpty()) {
+                System.out.println("Todas las habitaciones están reservadas actualmente.");
+            } else {
+                for (Habitacion h : habitacionesSinReserva) {
+                    System.out.println(h);
+                }
+            }
+
+
+        }catch (ListaVaciaException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
 
