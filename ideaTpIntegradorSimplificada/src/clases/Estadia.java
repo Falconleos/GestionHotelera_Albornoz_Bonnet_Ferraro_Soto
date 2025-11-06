@@ -14,6 +14,8 @@ public class Estadia {
     private LocalDate fechaCheckOut;
     private List<Servicio>listaServicios;
     private int numHabitacion;
+    private boolean cancelada;
+    private LocalDate fechaCancelacion;
 
     public Estadia(Reserva reserva, Cliente cliente, int pax, LocalDate fechaCheckIn, LocalDate fechaCheckOut, List<Servicio> listaServicios, int numHabitacion) {
         this.idEstadia = contador++;
@@ -24,6 +26,8 @@ public class Estadia {
         this.fechaCheckOut = fechaCheckOut;
         this.listaServicios = listaServicios;
         this.numHabitacion = numHabitacion;
+        this.cancelada = false;
+        this.fechaCancelacion = null;
     }
 
     public int getIdEstadia() {
@@ -86,6 +90,22 @@ public class Estadia {
         this.numHabitacion = numHabitacion;
     }
 
+    public boolean isCancelada() {
+        return cancelada;
+    }
+
+    public void setCancelada(boolean cancelada) {
+        this.cancelada = cancelada;
+    }
+
+    public LocalDate getFechaCancelacion() {
+        return fechaCancelacion;
+    }
+
+    public void setFechaCancelacion(LocalDate fechaCancelacion) {
+        this.fechaCancelacion = fechaCancelacion;
+    }
+
     @Override
     public String toString() {
         return "Estadia{" +
@@ -97,9 +117,8 @@ public class Estadia {
                 ", fechaCheckOut=" + fechaCheckOut +
                 ", listaServicios=" + listaServicios +
                 ", numHabitacion=" + numHabitacion +
+                ", cancelada=" + cancelada +
+                ", fechaCancelacion=" + fechaCancelacion +
                 '}';
     }
-
-
-
 }

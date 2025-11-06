@@ -170,6 +170,8 @@ public class MenuReserva {
 
         }catch (DateTimeException e){
             System.out.println("Fecha invalida...");
+        }catch (NumberFormatException e){
+            System.out.println("formato invalido...");
         }
     }
 

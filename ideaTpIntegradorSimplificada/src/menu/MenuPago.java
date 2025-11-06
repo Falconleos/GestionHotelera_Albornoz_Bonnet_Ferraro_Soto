@@ -6,8 +6,10 @@ import clases.Estadia;
 import clases.Pago;
 import enums.TipoPago;
 import excepcions.ElementoNuloException;
+import excepcions.ListaVaciaException;
 import gestor.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuPago {
@@ -34,6 +36,7 @@ public class MenuPago {
                     generarPago(sc,gestorPago,gestorCuenta,gestorEstadia);
                     break;
                 case 2:
+                    mostrarPagos(gestorPago);
                     break;
                 case 3:
                     break;
@@ -144,7 +147,9 @@ public class MenuPago {
             double total = cuentaSeleccionada.getTotal() - ( cuentaSeleccionada.getTotal() * (descuento / 100.0) );
 
             Pago pagoConcretado = new Pago(cuentaSeleccionada,tipoPago,descuento,total);
-            gestorPago.agregar(pagoConcretado);
+            gestorPago.agregar(pagoConcretado);//descuento aplicado y pago generado
+
+            cuentaSeleccionada.setPago(true); //cuenta calificada como abonada...
 
             System.out.println("Pago concretado: ");
             System.out.println(pagoConcretado);
@@ -155,7 +160,19 @@ public class MenuPago {
         }catch (ElementoNuloException e){
             System.out.println(e.getMessage());
         }
-
     }
+
+    public static void mostrarPagos(GestorPago gestorPago){
+        try {
+            List<Pago>pagosEncontrados = gestorPago.listarPagos();
+            for(Pago p : pagosEncontrados){
+                System.out.println(p);
+            }
+        }catch (ListaVaciaException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 }
