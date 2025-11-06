@@ -5,15 +5,17 @@ import clases.*;
 import excepcions.ListaVaciaException;
 import gestor.*;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuEstadia {
 
     public static void mostrarMenu(GestorEstadia gestorEstadia, GestorReserva gestorReserva,
-                            GestorCliente gestorCliente, GestorServicio gestorServicio,
-                            GestorHabitacion gestorHabitacion,Scanner sc) {
+                                   GestorCliente gestorCliente, GestorServicio gestorServicio,
+                                   GestorHabitacion gestorHabitacion,GestorCuenta gestorCuenta,Scanner sc) {
 
         boolean salir = false;
         while (!salir) {
@@ -27,11 +29,18 @@ public class MenuEstadia {
             System.out.println("0. Volver al menú principal");
             System.out.print("Seleccione una opción: ");
 
-            int opcion = Integer.parseInt(sc.nextLine());
+            int opcion = -1;
+
+            try {
+                opcion = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Formato inválido. Ingrese un número.");
+                continue;
+            }
 
             switch (opcion) {
                 case 1:
-                    crearEstadia(sc,gestorReserva,gestorHabitacion,gestorCliente,gestorServicio,gestorEstadia);
+                    crearEstadia(sc,gestorReserva,gestorHabitacion,gestorCliente,gestorServicio,gestorEstadia,gestorCuenta);
                     break;
                 case 2:
 
@@ -74,7 +83,7 @@ public class MenuEstadia {
     }
 
     //---------------------- CREAR ESTADÍA ----------------------//
-    private static void crearEstadia(Scanner sc,GestorReserva gestorReserva,GestorHabitacion gestorHabitacion,GestorCliente gestorCliente,GestorServicio gestorServicio,GestorEstadia gestorEstadia) {
+    private static void crearEstadia(Scanner sc,GestorReserva gestorReserva,GestorHabitacion gestorHabitacion,GestorCliente gestorCliente,GestorServicio gestorServicio,GestorEstadia gestorEstadia,GestorCuenta gestorCuenta) {
         Reserva reservaSeleccionada = null;
 
         if(!gestorReserva.getLista().isEmpty()){
@@ -198,16 +207,10 @@ public class MenuEstadia {
             System.out.println("\n--- Crear nuevo cliente ---");
             System.out.print("DNI: ");
             String dni = sc.nextLine();
-            System.out.print("Nombre: ");
-            String nombre = sc.nextLine();
-            System.out.print("Apellido: ");
-            String apellido = sc.nextLine();
-            System.out.print("Celular: ");
-            String celular = sc.nextLine();
             System.out.print("Ciudad de origen: ");
             String ciudad = sc.nextLine();
 
-            clienteSeleccionado = new Cliente(dni, nombre, apellido, celular,ciudad);
+            clienteSeleccionado = new Cliente(dni, reservaSeleccionada.getNombreReferencia(), reservaSeleccionada.getApellidoReferencia(), reservaSeleccionada.getCelularReferencia(),ciudad);
             gestorCliente.agregar(clienteSeleccionado);
         }
 
@@ -218,25 +221,31 @@ public class MenuEstadia {
             System.out.println("aun no hay servicios que agregar...");
             serviciosSeleccionados = null;
         }else{
-            boolean agregarMas = true;
 
-            while (agregarMas) {
-                gestorServicio.mostrar();
-                System.out.print("Ingrese el ID del servicio a agregar (0 para terminar): ");
-                int idServicio = Integer.parseInt(sc.nextLine());
+            try {
+                boolean agregarMas = true;
 
-                if (idServicio == 0) {
-                    agregarMas = false;
-                } else {
-                    Servicio s = gestorServicio.buscarServicioPorId(idServicio);
-                    if (s != null) {
-                        serviciosSeleccionados.add(s);
-                        System.out.println("✅ Servicio agregado: " + s.getDetalle());
+                while (agregarMas) {
+                    gestorServicio.mostrar();
+                    System.out.print("Ingrese el ID del servicio a agregar (0 para terminar): ");
+                    int idServicio = Integer.parseInt(sc.nextLine());
+
+                    if (idServicio == 0) {
+                        agregarMas = false;
                     } else {
-                        System.out.println("⚠️ No se encontró servicio con ese ID.");
+                        Servicio s = gestorServicio.buscarServicioPorId(idServicio);
+                        if (s != null) {
+                            serviciosSeleccionados.add(s);
+                            System.out.println("✅ Servicio agregado: " + s.getDetalle());
+                        } else {
+                            System.out.println("⚠️ No se encontró servicio con ese ID.");
+                        }
                     }
                 }
+            }catch (NumberFormatException e){
+                System.out.println("Id invalido, agregar servicios luego");
             }
+
         }
 
         // 4️⃣ Buscar mumero de habitación de la reserva
@@ -259,8 +268,23 @@ public class MenuEstadia {
                 numHabitacion
         );
 
+        //calculo total de estadia para crear cuenta
+        Habitacion habitacionDeEstadia = gestorHabitacion.buscarHabitacionXnum(estadia.getNumHabitacion());
+        long dias = ChronoUnit.DAYS.between(estadia.getFechaCheckIn(), estadia.getFechaCheckOut());
+        double totalHabitacionEstadia = habitacionDeEstadia.getPrecio() * dias;
+        double totalServicios = 0;
+
+        if(!gestorServicio.getLista().isEmpty()){
+            totalServicios = gestorServicio.calcularTotal(serviciosSeleccionados);;
+        }
+
+        double totalCuenta = totalHabitacionEstadia + totalServicios;
+
+        // creacion de la cuenta automaticamente...
+        Cuenta cuenta = new Cuenta(estadia,totalCuenta);
+        gestorCuenta.agregar(cuenta);
         gestorEstadia.agregar(estadia);
-        System.out.println("🎉 Estadía creada exitosamente! Habitación: " + numHabitacion);
+        System.out.println("🎉 Estadía y cuenta creada exitosamente! Habitación: " + numHabitacion);
     }
 
     public static void buscarEstadiaXhabitacion(Scanner sc,GestorHabitacion gestorHabitacion,GestorEstadia gestorEstadia){

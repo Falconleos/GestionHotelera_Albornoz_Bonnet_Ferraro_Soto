@@ -13,7 +13,7 @@ public class MenuPrincipal {
         this.hotel = hotel;
     }
 
-    public void mostrarMenu() throws PersonaNoEncontradaException {
+    public void mostrarMenu(){
 
         Scanner sc = new Scanner(System.in);
         boolean continuar = true;
@@ -56,16 +56,16 @@ public class MenuPrincipal {
                     MenuPersonal.mostrarMenu(sc, hotel.getGestorPersonal());
                     break;
                 case 5:
-                    MenuEstadia.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    MenuEstadia.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorCuenta(), sc);
                     break;
                 case 6:
-                    MenuCuenta.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    MenuCuenta.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorCuenta(), sc);
                     break;
                 case 7:
                     MenuPago.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
                     break;
                 case 8:
-                    MenuServicio.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    MenuServicio.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorCuenta(), sc);
                     break;
                 case 0:
                     continuar = false;

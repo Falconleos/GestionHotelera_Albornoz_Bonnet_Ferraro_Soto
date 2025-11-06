@@ -11,7 +11,7 @@ public class MenuCliente {
 
     //Metodos del menu
     //1. Visualizacion de las opciones del menu de clientes
-    public static void mostrarMenu(Scanner sc, GestorCliente gestorCliente) throws PersonaNoEncontradaException {
+    public static void mostrarMenu(Scanner sc, GestorCliente gestorCliente) {
         boolean salir = false;
 
         while (!salir) {
@@ -69,51 +69,66 @@ public class MenuCliente {
         gestorCliente.agregar(cliente);
     }
 
-    private static void eliminarCliente(Scanner sc, GestorCliente gestorCliente) throws PersonaNoEncontradaException {
-        System.out.print("Ingrese DNI del cliente a eliminar: ");
-        String dni = sc.nextLine();
+    private static void eliminarCliente(Scanner sc, GestorCliente gestorCliente){
+        try {
+            System.out.print("Ingrese DNI del cliente a eliminar: ");
+            String dni = sc.nextLine();
 
-        int indiceElementoAEliminar = gestorCliente.buscarIndicePorTexto(dni);
-        if (indiceElementoAEliminar < 0) throw new PersonaNoEncontradaException("Cliente no encontrado");
-        gestorCliente.eliminar(gestorCliente.getLista().get(indiceElementoAEliminar));
+            int indiceElementoAEliminar = gestorCliente.buscarIndicePorTexto(dni);
+            if (indiceElementoAEliminar < 0) throw new PersonaNoEncontradaException("Cliente no encontrado");
+            gestorCliente.eliminar(gestorCliente.getLista().get(indiceElementoAEliminar));
+
+        }catch (PersonaNoEncontradaException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static void agregarComentario(Scanner sc, GestorCliente gestorCliente) throws PersonaNoEncontradaException {
-        System.out.print("Ingrese DNI del cliente: ");
-        String dni = sc.nextLine();
-        int indiceClienteAModificar = gestorCliente.buscarIndicePorTexto(dni);
-        if (indiceClienteAModificar < 0) throw new PersonaNoEncontradaException("No se encontro cliente en la lista con el DNI ingresado");
-        System.out.print("Ingrese comentario: ");
-        String comentarioAAgregar = sc.nextLine();
-        gestorCliente.getLista().get(indiceClienteAModificar).agregarComentario(comentarioAAgregar);
+    private static void agregarComentario(Scanner sc, GestorCliente gestorCliente) {
+        try{
+            System.out.print("Ingrese DNI del cliente: ");
+            String dni = sc.nextLine();
+            int indiceClienteAModificar = gestorCliente.buscarIndicePorTexto(dni);
+            if (indiceClienteAModificar < 0) throw new PersonaNoEncontradaException("No se encontro cliente en la lista con el DNI ingresado");
+            System.out.print("Ingrese comentario: ");
+            String comentarioAAgregar = sc.nextLine();
+            gestorCliente.getLista().get(indiceClienteAModificar).agregarComentario(comentarioAAgregar);
+        }catch (PersonaNoEncontradaException e){
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static void modificarCliente(Scanner sc, GestorCliente gestorCliente) throws PersonaNoEncontradaException {
-        System.out.print("Ingrese DNI del cliente a modificar: ");
-        String dni = sc.nextLine();
-        int indiceClienteAModificar = gestorCliente.buscarIndicePorTexto(dni);
+    private static void modificarCliente(Scanner sc, GestorCliente gestorCliente)  {
 
-        if (indiceClienteAModificar < 0) throw new PersonaNoEncontradaException("No se encontro cliente en la lista con el DNI ingresado");
+        try {
+            System.out.print("Ingrese DNI del cliente a modificar: ");
+            String dni = sc.nextLine();
+            int indiceClienteAModificar = gestorCliente.buscarIndicePorTexto(dni);
 
-        System.out.println("Cliente encontrado: " + gestorCliente.getLista().get(indiceClienteAModificar));
+            if (indiceClienteAModificar < 0) throw new PersonaNoEncontradaException("No se encontro cliente en la lista con el DNI ingresado");
 
-        System.out.print("Nuevo nombre (" + gestorCliente.getLista().get(indiceClienteAModificar).getNombre() + "): ");
-        String nombre = sc.nextLine();
-        if (!nombre.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setNombre(nombre);
+            System.out.println("Cliente encontrado: " + gestorCliente.getLista().get(indiceClienteAModificar));
 
-        System.out.print("Nuevo apellido (" + gestorCliente.getLista().get(indiceClienteAModificar).getApellido() + "): ");
-        String apellido = sc.nextLine();
-        if (!apellido.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setApellido(apellido);
+            System.out.print("Nuevo nombre (" + gestorCliente.getLista().get(indiceClienteAModificar).getNombre() + "): ");
+            String nombre = sc.nextLine();
+            if (!nombre.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setNombre(nombre);
 
-        System.out.print("Nuevo celular (" + gestorCliente.getLista().get(indiceClienteAModificar).getCelular() + "): ");
-        String celular = sc.nextLine();
-        if (!celular.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setCelular(celular);
+            System.out.print("Nuevo apellido (" + gestorCliente.getLista().get(indiceClienteAModificar).getApellido() + "): ");
+            String apellido = sc.nextLine();
+            if (!apellido.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setApellido(apellido);
 
-        System.out.print("Nueva ciudad de origen (" + gestorCliente.getLista().get(indiceClienteAModificar).getCiudadOrigen() + "): ");
-        String ciudadOrigen = sc.nextLine();
-        if (!ciudadOrigen.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setCiudadOrigen(ciudadOrigen);
+            System.out.print("Nuevo celular (" + gestorCliente.getLista().get(indiceClienteAModificar).getCelular() + "): ");
+            String celular = sc.nextLine();
+            if (!celular.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setCelular(celular);
 
-        System.out.println("Cliente modificado correctamente: " + gestorCliente.getLista().get(indiceClienteAModificar));
+            System.out.print("Nueva ciudad de origen (" + gestorCliente.getLista().get(indiceClienteAModificar).getCiudadOrigen() + "): ");
+            String ciudadOrigen = sc.nextLine();
+            if (!ciudadOrigen.isBlank()) gestorCliente.getLista().get(indiceClienteAModificar).setCiudadOrigen(ciudadOrigen);
+
+            System.out.println("Cliente modificado correctamente: " + gestorCliente.getLista().get(indiceClienteAModificar));
+        }catch (PersonaNoEncontradaException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
 

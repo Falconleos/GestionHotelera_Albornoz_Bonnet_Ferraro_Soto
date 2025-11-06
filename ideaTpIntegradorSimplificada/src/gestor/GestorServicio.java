@@ -3,6 +3,8 @@ package gestor;
 import clases.Servicio;
 import excepcions.ListaVaciaException;
 
+import java.util.List;
+
 public class GestorServicio extends Gestor<Servicio>{
 
     private void validarListaVacia() throws ListaVaciaException {
@@ -52,6 +54,14 @@ public class GestorServicio extends Gestor<Servicio>{
         validarListaVacia();
         servicio.setPrecio(precio);
         System.out.println("Precio de servicio modificado");
+    }
+
+    public static double calcularTotal(List<Servicio> servicios){
+        double total = 0;
+        for(Servicio s : servicios){
+            total += s.getPrecio();
+        }
+        return total;
     }
 
 

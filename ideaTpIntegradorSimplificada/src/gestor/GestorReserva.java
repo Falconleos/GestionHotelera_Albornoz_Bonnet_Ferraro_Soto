@@ -78,11 +78,11 @@ public class GestorReserva extends Gestor<Reserva>{
         validarListaVacia();
         List<Reserva>filtradas = new ArrayList<>();
 
-            for(Reserva r : lista){
-                if(r.getFechaIngreso().equals(LocalDate.now())){
-                    filtradas.add(r);
-                }
+        for(Reserva r : lista){
+            if(r.getFechaIngreso().equals(LocalDate.now())){
+                filtradas.add(r);
             }
+        }
         return filtradas;
     }
 

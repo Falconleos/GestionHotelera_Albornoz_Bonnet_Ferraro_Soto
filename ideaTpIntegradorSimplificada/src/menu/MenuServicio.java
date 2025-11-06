@@ -1,17 +1,21 @@
 package menu;
 
 import claseHotel.Hotel;
+import clases.Cuenta;
+import clases.Estadia;
+import clases.Habitacion;
 import clases.Servicio;
-import excepcions.ElementoNuloException;
-import excepcions.ListaVaciaException;
-import excepcions.PrecioInvalidoException;
+import excepcions.*;
 import gestor.*;
 
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuServicio {
 
-    public static void mostrarMenu(GestorEstadia gestorEstadia, GestorReserva gestorReserva, GestorCliente gestorCliente, GestorServicio gestorServicio, GestorHabitacion gestorHabitacion, Scanner sc){
+    public static void mostrarMenu(GestorEstadia gestorEstadia, GestorReserva gestorReserva, GestorCliente gestorCliente, GestorServicio gestorServicio, GestorHabitacion gestorHabitacion,GestorCuenta gestorCuenta ,Scanner sc){
 
         boolean continuar = true;
         while (continuar) {
@@ -53,7 +57,6 @@ public class MenuServicio {
                 case 4:
                     modificarValorServicio(sc,gestorServicio);
                     break;
-
                 case 0:
                     continuar = false;
                     System.out.println("Saliendo...");
@@ -87,7 +90,7 @@ public class MenuServicio {
 
         if(precio > 0){
 
-            ;gestorServicio.agregar(new Servicio(descripcion,precio));
+            gestorServicio.agregar(new Servicio(descripcion,precio));
             System.out.println("Servicio generado correctamente.");
 
         }else{
@@ -167,4 +170,5 @@ public class MenuServicio {
             System.out.println(e.getMessage());
         }
     }
+
 }

@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class MenuPersonal {
 
     //Se podrian reemplzar la seleccion del turno y rol y sus filtrados con sout en vez de .values, que no vimos en la materia
-    public static void mostrarMenu(Scanner sc, GestorPersonal gestorPersonal) throws PersonaNoEncontradaException {
+    public static void mostrarMenu(Scanner sc, GestorPersonal gestorPersonal) {
         boolean salir = false;
 
         while (!salir) {
@@ -82,13 +82,17 @@ public class MenuPersonal {
         gestorPersonal.agregar(nuevo);
     }
 
-    private static void eliminarPersonal(Scanner sc, GestorPersonal gestorPersonal) throws PersonaNoEncontradaException {
-        System.out.print("Ingrese DNI del personal a eliminar: ");
-        String dni = sc.nextLine();
+    private static void eliminarPersonal(Scanner sc, GestorPersonal gestorPersonal) {
+        try{
+            System.out.print("Ingrese DNI del personal a eliminar: ");
+            String dni = sc.nextLine();
 
-        int indiceElementoAEliminar = gestorPersonal.buscarIndicePorTexto(dni);
-        if (indiceElementoAEliminar < 0) throw new PersonaNoEncontradaException("Personal no encontrado");
-        gestorPersonal.eliminar(gestorPersonal.getLista().get(indiceElementoAEliminar));
+            int indiceElementoAEliminar = gestorPersonal.buscarIndicePorTexto(dni);
+            if (indiceElementoAEliminar < 0) throw new PersonaNoEncontradaException("Personal no encontrado");
+            gestorPersonal.eliminar(gestorPersonal.getLista().get(indiceElementoAEliminar));
+        }catch (PersonaNoEncontradaException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void filtrarPorRol(Scanner sc, GestorPersonal gestorPersonal) {

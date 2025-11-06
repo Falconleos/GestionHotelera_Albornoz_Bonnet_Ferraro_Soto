@@ -1,6 +1,7 @@
 package gestor;
 
 import clases.Estadia;
+import clases.Servicio;
 import excepcions.ListaVaciaException;
 
 import java.time.LocalDate;
@@ -47,16 +48,25 @@ public class GestorEstadia extends Gestor<Estadia>{
         validarListaVacia();
         List<Estadia>estadiasEncontradas = new ArrayList<>();
         LocalDate hoy = LocalDate.now();
-            for(Estadia e : lista){
-                if(e.getCliente().getApellido().equalsIgnoreCase(apellido)
+        for(Estadia e : lista){
+            if(e.getCliente().getApellido().equalsIgnoreCase(apellido)
                     &&   (hoy.isEqual(e.getFechaCheckIn()) ||
-                        hoy.isEqual(e.getFechaCheckOut()) ||
-                        (hoy.isAfter(e.getFechaCheckIn()) && hoy.isBefore(e.getFechaCheckOut())))
-                ){
-                    estadiasEncontradas.add(e);
-                }
+                    hoy.isEqual(e.getFechaCheckOut()) ||
+                    (hoy.isAfter(e.getFechaCheckIn()) && hoy.isBefore(e.getFechaCheckOut())))
+            ){
+                estadiasEncontradas.add(e);
             }
+        }
         return estadiasEncontradas;
+    }
+
+    public void agregarServicioEstadia(Servicio servicio,Estadia estadia){
+
+        List<Servicio>listaServiciosEstadia = estadia.getListaServicios();
+        listaServiciosEstadia.add(servicio);
+
+        estadia.setListaServicios(listaServiciosEstadia);
+        System.out.println("Servicio agregado correctamente...");
     }
 
 
