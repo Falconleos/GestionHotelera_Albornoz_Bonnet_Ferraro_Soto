@@ -62,7 +62,7 @@ public class MenuPrincipal {
                     MenuCuenta.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorCuenta(), sc);
                     break;
                 case 7:
-                    MenuPago.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), sc);
+                    MenuPago.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorPago(), hotel.getGestorCuenta(),sc);
                     break;
                 case 8:
                     MenuServicio.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorCuenta(), sc);
