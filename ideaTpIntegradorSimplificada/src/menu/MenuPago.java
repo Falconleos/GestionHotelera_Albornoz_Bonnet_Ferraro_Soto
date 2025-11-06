@@ -57,11 +57,16 @@ public class MenuPago {
             System.out.println("Ingrese habitacion: ");
             int numHabitacion = Integer.parseInt(sc.nextLine());
 
+            if(numHabitacion<0){
+                throw new NumberFormatException("Habitacion invalida.");
+            }
+
             Estadia estadiaEncontrada = gestorEstadia.buscarEstadiaXHabitacion(numHabitacion);
 
             if(estadiaEncontrada == null){
-                throw new ElementoNuloException("No existe estadia en esa habitacion...");
+                throw new ElementoNuloException("No existe estadia con ese numero de habitacion/Revisar numero de habitacion o estadias");
             }
+
             Cuenta cuentaSeleccionada = null;
 
             for(Cuenta c : gestorCuenta.getLista()){
@@ -75,7 +80,7 @@ public class MenuPago {
             boolean salir = false;
             while (!salir){
 
-                System.out.println("Elija el tipo de pago:");
+                System.out.println("Elija el tipo de pago o 0 para cancelar");
                 System.out.println("1.Efectivo");
                 System.out.println("2.Debito");
                 System.out.println("3.Credito");
@@ -94,18 +99,22 @@ public class MenuPago {
                     case 1:
                         tipoPago = TipoPago.EFECTIVO;
                         salir = true;
+                        System.out.println("Efectivo");
                         break;
                     case 2:
                         tipoPago = TipoPago.DEBITO;
                         salir = true;
+                        System.out.println("Debito");
                         break;
                     case 3:
                         tipoPago = TipoPago.CREDITO;
                         salir = true;
+                        System.out.println("Credito");
                         break;
                     case 4:
                         tipoPago = TipoPago.TRANSFERENCIA;
                         salir = true;
+                        System.out.println("Transferencia");
                         break;
                     case 0:
                         salir = true;
@@ -116,16 +125,22 @@ public class MenuPago {
                 }
             }
 
-            System.out.println("Ingrese porcentaje de descuento:");
-            int descuento = 0;
+            int descuento = -1;
 
-            try {
-                descuento = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("⚠ Formato inválido. Ingrese un número.");
+            while (descuento == -1){
+                try {
+                    System.out.println("Ingrese porcentaje de descuento o 0 Sin descuento");
+                    descuento = Integer.parseInt(sc.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("⚠ Formato inválido. Ingrese un número.");
+                }
             }
 
-            gestorPago.agregar(new Pago(cuentaSeleccionada,tipoPago,descuento));
+            Pago pagoConcretado = new Pago(cuentaSeleccionada,tipoPago,descuento);
+            gestorPago.agregar(pagoConcretado);
+
+            System.out.println("Pago concretado: ");
+            System.out.println(pagoConcretado);
 
 
         } catch (NumberFormatException e) {

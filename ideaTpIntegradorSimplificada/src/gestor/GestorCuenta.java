@@ -70,7 +70,7 @@ public class GestorCuenta extends Gestor<Cuenta>{
         List<Cuenta> cuentasEncontradas = new ArrayList<>();
 
         for(Cuenta cuenta: lista){
-            if(!cuenta.isPago()){
+            if(cuenta.isPago()){
                 cuentasEncontradas.add(cuenta);
             }
         }

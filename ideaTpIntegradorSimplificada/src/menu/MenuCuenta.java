@@ -147,7 +147,7 @@ public class MenuCuenta {
         }else{
             List<Cuenta>cuentasEncontradas = gestorCuenta.cuentaSinAbonar();
 
-            if(!cuentasEncontradas.isEmpty()){
+            if(cuentasEncontradas.isEmpty()){
                 System.out.println("No hay cuentas sin abonar");
             }else{
                 System.out.println("Cuentas sin abonar:");
@@ -165,7 +165,7 @@ public class MenuCuenta {
         }else{
             List<Cuenta>cuentasEncontradas = gestorCuenta.cuentaAbonadas();
 
-            if(!cuentasEncontradas.isEmpty()){
+            if(cuentasEncontradas.isEmpty()){
                 System.out.println("No hay cuentas abonadas");
             }else{
                 System.out.println("Cuentas abonadas:");
