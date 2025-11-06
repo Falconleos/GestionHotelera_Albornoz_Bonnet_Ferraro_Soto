@@ -20,17 +20,25 @@ public class MenuPrincipal {
 
         while (continuar){
             Hotel.limpiarPantallaMenu();
-            System.out.println("Menu Hotel: " + hotel.getNombre() + " Ubicacion: " + hotel.getUbicacion());
-            System.out.println("1. Gestion de Habitaciones");
-            System.out.println("2. Gestion de Reservas");
-            System.out.println("3. Gestion de Clientes");
-            System.out.println("4. Gestion del Personal");
-            System.out.println("5. Gestion de Estadías");
-            System.out.println("6. Gestion de Cuentas");
-            System.out.println("7. Gestion de Pagos");
-            System.out.println("8. Gestion de Servicios");
-            System.out.println("0.Salir");
-            System.out.println("Elija la opcion:");
+
+            System.out.println("==============================================");
+            System.out.println("               MENU PRINCIPAL                 ");
+            System.out.println("==============================================");
+            System.out.println(" Hotel: " + hotel.getNombre());
+            System.out.println(" Ubicación: " + hotel.getUbicacion());
+            System.out.println("----------------------------------------------");
+            System.out.println(" 🛏️  1. Gestión de Habitaciones");
+            System.out.println(" 📅  2. Gestión de Reservas");
+            System.out.println(" 👤  3. Gestión de Clientes");
+            System.out.println(" 🧑‍💼  4. Gestión del Personal");
+            System.out.println(" 🏨  5. Gestión de Estadías");
+            System.out.println(" 💳  6. Gestión de Cuentas");
+            System.out.println(" ✅  7. Gestión de Pagos");
+            System.out.println(" 🛠️  8. Gestión de Servicios");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 🚪  0. Salir");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = -1;
 

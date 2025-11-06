@@ -23,14 +23,19 @@ public class MenuEstadia {
         boolean salir = false;
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("\n--- MENÚ ESTADÍAS ---");
-            System.out.println("1. Crear estadía");
-            System.out.println("2. Listar estadías");
-            System.out.println("3. Cancelar estadía");
-            System.out.println("4. Buscar estadia por habitacion");
-            System.out.println("5. Buscar estadia por apellido");
-            System.out.println("0. Volver al menú principal");
-            System.out.print("Seleccione una opción: ");
+
+            System.out.println("==============================================");
+            System.out.println("                MENÚ ESTADÍAS 🏨              ");
+            System.out.println("==============================================");
+            System.out.println(" 1. Crear estadía");
+            System.out.println(" 2. Listar estadías");
+            System.out.println(" 3. Cancelar estadía");
+            System.out.println(" 4. Buscar estadía por habitación");
+            System.out.println(" 5. Buscar estadía por apellido");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = -1;
 

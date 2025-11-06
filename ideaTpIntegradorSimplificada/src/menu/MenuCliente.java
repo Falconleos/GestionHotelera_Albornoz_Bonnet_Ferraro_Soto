@@ -16,14 +16,19 @@ public class MenuCliente {
 
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("\n===== MENÚ CLIENTE =====");
-            System.out.println("1. Agregar Cliente");
-            System.out.println("2. Eliminar Cliente");
-            System.out.println("3. Mostrar Todos los Clientes");
-            System.out.println("4. Agregar Comentario a Cliente");
-            System.out.println("5. Modificar Cliente");
-            System.out.println("0. Volver al Menú Principal");
-            System.out.print("Seleccione una opción: ");
+
+            System.out.println("==============================================");
+            System.out.println("                MENÚ CLIENTE  👤              ");
+            System.out.println("==============================================");
+            System.out.println(" 1. Agregar Cliente");
+            System.out.println(" 2. Eliminar Cliente");
+            System.out.println(" 3. Mostrar Todos los Clientes");
+            System.out.println(" 4. Agregar Comentario a Cliente");
+            System.out.println(" 5. Modificar Cliente");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 0. Volver al Menú Principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = Integer.parseInt(sc.nextLine());
 

@@ -17,14 +17,19 @@ public class MenuPersonal {
 
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("\n===== MENÚ PERSONAL =====");
-            System.out.println("1. Agregar Personal");
-            System.out.println("2. Eliminar Personal");
-            System.out.println("3. Mostrar Todo el Personal");
-            System.out.println("4. Filtrar por Rol");
-            System.out.println("5. Filtrar por Turno");
-            System.out.println("0. Volver al Menú Principal");
-            System.out.print("Seleccione una opción: ");
+
+            System.out.println("==============================================");
+            System.out.println("                MENÚ PERSONAL  🧑‍💼             ");
+            System.out.println("==============================================");
+            System.out.println(" 1. Agregar personal");
+            System.out.println(" 2. Eliminar personal");
+            System.out.println(" 3. Mostrar todo el personal");
+            System.out.println(" 4. Filtrar por rol");
+            System.out.println(" 5. Filtrar por turno");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = Integer.parseInt(sc.nextLine());
 

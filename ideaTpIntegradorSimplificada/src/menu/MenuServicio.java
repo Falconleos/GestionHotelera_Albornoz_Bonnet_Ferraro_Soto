@@ -20,13 +20,18 @@ public class MenuServicio {
         boolean continuar = true;
         while (continuar) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("Gestion Servicios");
-            System.out.println("1.Generar Servicio");
-            System.out.println("2.Ver Servicios");
-            System.out.println("3.Modificar Servicio");
-            System.out.println("4.Modificar valor Servicio");
-            System.out.println("0.Salir");
-            System.out.println("Elija la opcion:");
+
+            System.out.println("==============================================");
+            System.out.println("             GESTIÓN DE SERVICIOS  🛠️         ");
+            System.out.println("==============================================");
+            System.out.println(" 1. Generar servicio");
+            System.out.println(" 2. Ver servicios");
+            System.out.println(" 3. Modificar servicio");
+            System.out.println(" 4. Modificar valor del servicio");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = -1;
 

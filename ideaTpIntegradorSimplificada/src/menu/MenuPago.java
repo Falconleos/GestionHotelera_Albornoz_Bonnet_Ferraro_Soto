@@ -21,13 +21,18 @@ public class MenuPago {
 
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("\n--- MENÚ PAGO ---");
-            System.out.println("1. Generar Pago");
-            System.out.println("2. Ver pagos");
-            System.out.println("3. Buscar pago por Apellido");
-            System.out.println("4. eliminar Pago");
-            System.out.println("0. Volver al menú principal");
-            System.out.print("Seleccione una opción: ");
+
+            System.out.println("==============================================");
+            System.out.println("                 MENÚ PAGO  ✅                ");
+            System.out.println("==============================================");
+            System.out.println(" 1. Generar pago");
+            System.out.println(" 2. Ver pagos");
+            System.out.println(" 3. Buscar pago por apellido");
+            System.out.println(" 4. Eliminar pago");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = Integer.parseInt(sc.nextLine());
 

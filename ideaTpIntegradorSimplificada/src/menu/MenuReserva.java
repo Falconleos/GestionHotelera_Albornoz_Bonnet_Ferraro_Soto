@@ -21,18 +21,23 @@ public class MenuReserva {
         boolean continuar = true;
         while (continuar) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("Gestion Reservas");
-            System.out.println("1.Generar Reserva");
-            System.out.println("2.Ver Checks in del día");
-            System.out.println("3.Ver Checks in por fecha");
-            System.out.println("4.Listar Reservas por Apellido");
-            System.out.println("5.Listar Reservas por numero de habitación");
-            System.out.println("6.Calcular promedio de noches de las reservas");
-            System.out.println("7.Cancelar reserva");
-            System.out.println("8.Listar todas las reservas");
-            System.out.println("9.Agregar comentario a una reservas");
-            System.out.println("0.Salir");
-            System.out.println("Elija la opcion:");
+
+            System.out.println("==============================================");
+            System.out.println("              GESTIÓN DE RESERVAS  📅         ");
+            System.out.println("==============================================");
+            System.out.println("  1. Generar reserva");
+            System.out.println("  2. Ver check-ins del día");
+            System.out.println("  3. Ver check-ins por fecha");
+            System.out.println("  4. Listar reservas por apellido");
+            System.out.println("  5. Listar reservas por número de habitación");
+            System.out.println("  6. Calcular promedio de noches de las reservas");
+            System.out.println("  7. Cancelar reserva");
+            System.out.println("  8. Listar todas las reservas");
+            System.out.println("  9. Agregar comentario a una reserva");
+            System.out.println("----------------------------------------------");
+            System.out.println("  0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = -1;
 

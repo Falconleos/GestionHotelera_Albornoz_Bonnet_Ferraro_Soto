@@ -20,16 +20,21 @@ public class MenuCuenta {
 
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("\n--- MENÚ CUENTA ---");
-            System.out.println("1. Mostrar cuentas");
-            System.out.println("2. Mostrar cuenta por habitacion");
-            System.out.println("3. Mostrar cuenta por apellido");
-            System.out.println("4. Mostrar cuentas sin abonar");
-            System.out.println("5. Mostrar cuentas abonadas");
-            System.out.println("6. Mostrar cuentas con check out del día");
-            System.out.println("7. Mostrar cuentas con check out de un dia especifico");
-            System.out.println("0. Volver al menú principal");
-            System.out.print("Seleccione una opción: ");
+
+            System.out.println("==============================================");
+            System.out.println("                 MENÚ CUENTA  💳              ");
+            System.out.println("==============================================");
+            System.out.println(" 1. Mostrar cuentas");
+            System.out.println(" 2. Mostrar cuenta por habitación");
+            System.out.println(" 3. Mostrar cuenta por apellido");
+            System.out.println(" 4. Mostrar cuentas sin abonar");
+            System.out.println(" 5. Mostrar cuentas abonadas");
+            System.out.println(" 6. Mostrar cuentas con check-out del día");
+            System.out.println(" 7. Mostrar cuentas con check-out de un día específico");
+            System.out.println("----------------------------------------------");
+            System.out.println(" 0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
 
             int opcion = -1;
 

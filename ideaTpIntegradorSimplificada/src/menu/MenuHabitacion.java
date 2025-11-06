@@ -19,20 +19,24 @@ public class MenuHabitacion {
         boolean continuar = true;
         while (continuar) {
             Hotel.limpiarPantallaSubMenu();
-            System.out.println("Gestion Habitaciones");
-            System.out.println("1.Agregar habitaciones por defecto");
-            System.out.println("2.Agregar habitacion");
-            System.out.println("3.Eliminar habitacion");
-            System.out.println("4.Listar habitaciones");
-            System.out.println("5.Listar habitaciones por capacidad");
-            System.out.println("6.Buscar habitacion por numero");
-            System.out.println("7.Aumentar Valor de la Habitaciones");
-            System.out.println("8.Rebajar Valor de la Habitaciones");
-            System.out.println("9.Listar habitaciones sin reservas");
-            System.out.println("10.Ordenar habitaciones por capacidad");
-            System.out.println("0.Salir");
-            System.out.println("Elija la opcion:");
 
+            System.out.println("==============================================");
+            System.out.println("            GESTIÓN DE HABITACIONES 🛏️        ");
+            System.out.println("==============================================");
+            System.out.println("  1. Agregar habitaciones por defecto");
+            System.out.println("  2. Agregar habitación");
+            System.out.println("  3. Eliminar habitación");
+            System.out.println("  4. Listar habitaciones");
+            System.out.println("  5. Listar habitaciones por capacidad");
+            System.out.println("  6. Buscar habitación por número");
+            System.out.println("  7. Aumentar valor de las habitaciones");
+            System.out.println("  8. Rebajar valor de las habitaciones");
+            System.out.println("  9. Listar habitaciones sin reservas");
+            System.out.println(" 10. Ordenar habitaciones por capacidad");
+            System.out.println("----------------------------------------------");
+            System.out.println("  0. Volver al menú principal");
+            System.out.println("==============================================");
+            System.out.print  (" Seleccione una opción: ");
             int opcion = -1;
 
             try {
@@ -273,6 +277,10 @@ public class MenuHabitacion {
     public static void buscarHabitacionPorNumero(Scanner sc,GestorHabitacion gestorHabitacion){
 
         try{
+
+            if(gestorHabitacion.getLista().isEmpty()){
+                throw new ListaVaciaException("Aun no hay habitaciones cargadas...");
+            }
 
             System.out.println("Ingrese el numero de la habitacion a buscar:");
             int numBuscar = Integer.parseInt(sc.nextLine());
