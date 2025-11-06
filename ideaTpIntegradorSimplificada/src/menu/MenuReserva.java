@@ -95,11 +95,12 @@ public class MenuReserva {
     public static void generarReserva(Scanner sc, GestorHabitacion gestorHabitacion, GestorReserva gestorReserva){
         try {
             System.out.println("=== GENERAR RESERVA ===");
+
             try {
                 if(gestorHabitacion.getLista().isEmpty()){
                     throw new ListaVaciaException("Lista vacía...");
                 }
-            }catch (ListaVaciaException e){
+            } catch (ListaVaciaException e){
                 System.out.println("Aun no hay habitaciones generadas...");
                 return;
             }
@@ -117,7 +118,7 @@ public class MenuReserva {
             LocalDate egreso = LocalDate.parse(sc.nextLine());
 
             if (!egreso.isAfter(ingreso)) {
-                System.out.println("La fecha de egreso debe ser anterior o igual a la de ingreso.");
+                System.out.println("La fecha de egreso debe ser posterior a la de ingreso.");
                 return;
             }
 
@@ -125,34 +126,84 @@ public class MenuReserva {
             System.out.print("Cantidad de personas: ");
             int pax = Integer.parseInt(sc.nextLine());
 
-            //Intentar seleccionar habitación
+            // ==============================
+            // ✅ LISTAR HABITACIONES DISPONIBLES
+            // ==============================
+            List<Habitacion> candidatas = gestorHabitacion.listarHabitacionesXcapacidad(pax);
+            List<Habitacion> disponibles = new ArrayList<>();
+
+            for(Habitacion h : candidatas){
+                boolean disponible = true;
+
+                for(Reserva r : gestorReserva.getLista()){
+                    if(r.getHabitacion().equals(h)){
+
+                        boolean noSolapa =
+                                egreso.isBefore(r.getFechaIngreso()) || egreso.isEqual(r.getFechaIngreso()) ||
+                                        ingreso.isAfter(r.getFechaEgreso()) || ingreso.isEqual(r.getFechaEgreso());
+
+                        if(!noSolapa){
+                            disponible = false;
+                            break;
+                        }
+                    }
+                }
+
+                if(disponible){
+                    disponibles.add(h);
+                }
+            }
+
+            if(disponibles.isEmpty()){
+                System.out.println("No hay habitaciones disponibles para " + pax + " personas en esas fechas.");
+                return;
+            }
+
+            System.out.println("\nHabitaciones disponibles:");
+            for(Habitacion h : disponibles){
+                System.out.println("Número: " + h.getNumero()
+                        + " | Tipo: " + h.getTipo()
+                        + " | Capacidad: " + h.getCapacidadMaxima()
+                        + " | Precio: $" + h.getPrecio());
+            }
+
+            // ✅ Elegir número
+            System.out.print("\nIngrese el número de la habitación que desea: ");
+            int nro = Integer.parseInt(sc.nextLine());
+
             Habitacion habitacion = null;
-
-            habitacion = gestorReserva.seleccionarHabitacion(gestorHabitacion, ingreso, egreso, pax);
-
-            if(habitacion!=null){
-                System.out.println("\n");
-                System.out.println("Habitacion disponible: ");
-                System.out.println("Numero: " + habitacion.getNumero());
-                System.out.println("Tipo: " + habitacion.getTipo());
-                System.out.println("Capacidad: " + habitacion.getCapacidadMaxima());
-                System.out.println("Valor por noche: $" + habitacion.getPrecio());
-                System.out.println("Cantidad de noches: " + ChronoUnit.DAYS.between(ingreso,egreso));
-                System.out.println("Total por estadia: $" + habitacion.getPrecio() * ChronoUnit.DAYS.between(ingreso,egreso));
-            }else{
-                System.out.println("No hay habitaciones disponible...");
+            for(Habitacion h : disponibles){
+                if(h.getNumero() == nro){
+                    habitacion = h;
+                    break;
+                }
             }
 
-            if(habitacion.getCapacidadMaxima()>pax){
-                System.out.println("\nLa habitación tiene mas capacidad que la buscada");
+            if(habitacion == null){
+                System.out.println("Número de habitación inválido.");
+                return;
             }
 
-            System.out.println("\n");
-            System.out.println("Desea Reservar? S/N");
+            // ==============================
+            // ✅ RESUMEN DE HABITACIÓN
+            // ==============================
+            System.out.println("\nHabitación seleccionada:");
+            long noches = ChronoUnit.DAYS.between(ingreso, egreso);
+            System.out.println("N° " + habitacion.getNumero());
+            System.out.println("Tipo: " + habitacion.getTipo());
+            System.out.println("Capacidad: " + habitacion.getCapacidadMaxima());
+            System.out.println("Valor por noche: $" + habitacion.getPrecio());
+            System.out.println("Cantidad de noches: " + noches);
+            System.out.println("Total: $" + (habitacion.getPrecio() * noches));
+
+            if(habitacion.getCapacidadMaxima() > pax){
+                System.out.println("\nAviso: la habitación tiene mayor capacidad que la solicitada.");
+            }
+
+            System.out.println("\n¿Desea reservar? S/N");
             String respuesta = sc.nextLine();
 
             if(respuesta.equalsIgnoreCase("s")){
-                //Pedir datos del huésped
                 System.out.print("Nombre del pasajero: ");
                 String nombre = sc.nextLine();
                 System.out.print("Apellido del pasajero: ");
@@ -160,38 +211,32 @@ public class MenuReserva {
                 System.out.print("Celular del pasajero: ");
                 String celular = sc.nextLine();
 
-                long noches = ChronoUnit.DAYS.between(ingreso, egreso);
                 double valorTotal = noches * habitacion.getPrecio();
 
-                //Crear reserva
-                Reserva reserva = new Reserva(ingreso, egreso, pax, noches, habitacion, valorTotal, nombre, apellido, celular, "sin detalles extra", "Recepción");
+                Reserva reserva = new Reserva(ingreso, egreso, pax, noches, habitacion,
+                        valorTotal, nombre, apellido, celular,
+                        "sin detalles extra", "Recepción");
 
                 gestorReserva.agregar(reserva);
 
-                System.out.println("Desea agregar un comentario a la reserva: S/N");
-                String respuesta1 = sc.nextLine();
-
-                if(respuesta1.equalsIgnoreCase("s")){
-
+                System.out.println("¿Desea agregar un comentario a la reserva? S/N");
+                if(sc.nextLine().equalsIgnoreCase("s")){
                     System.out.println("Ingrese el comentario:");
                     String comentario = sc.nextLine();
-
                     gestorReserva.generarComentario(comentario, reserva);
                 }
 
                 System.out.println("Reserva creada con éxito!");
                 System.out.println(reserva);
 
-
-
-            }else{
-                System.out.println("Reserva rechazada...");
+            } else {
+                System.out.println("Reserva rechazada.");
             }
 
-        }catch (DateTimeException e){
-            System.out.println("Fecha invalida...");
-        }catch (NumberFormatException e){
-            System.out.println("formato invalido...");
+        } catch (DateTimeException e){
+            System.out.println("Fecha inválida...");
+        } catch (NumberFormatException e){
+            System.out.println("Formato inválido...");
         }
     }
 
