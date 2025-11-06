@@ -10,10 +10,8 @@ public class App {
 
         MenuPrincipal menuPrincipal = new MenuPrincipal(hotel);
 
-        try {
-            menuPrincipal.mostrarMenu();
-        } catch (PersonaNoEncontradaException e) {
-            System.out.println(e.getMessage());
-        }
+        menuPrincipal.mostrarMenu();
+
     }
 }
+
