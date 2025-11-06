@@ -170,6 +170,8 @@ public class MenuHabitacion {
             }
         }
 
+        gestorHabitacion.ordenarHabitacion();
+
     }
 
     public static void listarTodasHabitacions(GestorHabitacion gestorHabitacion){
