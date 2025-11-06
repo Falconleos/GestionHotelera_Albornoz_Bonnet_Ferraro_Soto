@@ -74,14 +74,13 @@ public class Habitacion implements Comparable<Habitacion> {
 
     @Override
     public String toString() {
-        return "Habitacion{" +
-                "idHabitacion=" + idHabitacion +
-                ", numero=" + numero +
-                ", tipo='" + tipo + '\'' +
-                ", capacidadMaxima=" + capacidadMaxima +
-                ", precio=" + precio +
-                ", descipcion='" + descripcion + '\'' +
-                '}';
+        return "=== Habitación ===\n" +
+                "• ID: " + idHabitacion + "\n" +
+                "• Número: " + numero + "\n" +
+                "• Tipo: " + tipo + "\n" +
+                "• Capacidad máxima: " + capacidadMaxima + "\n" +
+                "• Precio: " + precio + "\n" +
+                "• Descripción: " + descripcion + "\n";
     }
 
     @Override

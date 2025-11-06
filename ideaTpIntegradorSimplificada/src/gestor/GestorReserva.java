@@ -139,6 +139,11 @@ public class GestorReserva extends Gestor<Reserva>{
         return filtradas;
     }
 
+    public void generarComentario(String comentario,Reserva reserva){
+        reserva.setDetallesExtra(comentario);
+        System.out.println("Comentario agregado exitosamente.");
+    }
+
     //Implementacion metodo abstracto
     @Override
     public int buscarIndicePorTexto(String textoABuscar) {

@@ -99,15 +99,13 @@ public class Pago {
 
     @Override
     public String toString() {
-        return "Pago{" +
-                "idPago=" + idPago +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", monto=" + monto +
-                ", cuenta=" + cuenta +
-                ", tipoPago=" + tipoPago +
-                ", descuento=" + descuento +
-                ", total Final=" + total +
-                '}';
+        return  "=== Pago ===\n" +
+                "• ID de pago: " + idPago + "\n" +
+                "• Cliente: " + nombre + " " + apellido + "\n" +
+                "• Monto original: " + monto + "\n" +
+                "• Descuento aplicado: " + descuento + "%\n" +
+                "• Monto final: " + total + "\n" +
+                "• Tipo de pago: " + tipoPago + "\n" +
+                "• Cuenta asociada: " + cuenta.getId() + "\n";
     }
 }

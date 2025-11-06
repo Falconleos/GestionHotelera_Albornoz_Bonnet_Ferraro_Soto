@@ -38,10 +38,9 @@ public class Servicio {
 
     @Override
     public String toString() {
-        return "Servicio{" +
-                "idServicio=" + idServicio +
-                ", detalle='" + detalle + '\'' +
-                ", precio=" + precio +
-                '}';
+        return  "=== Servicio ===\n" +
+                "• ID: " + idServicio + "\n" +
+                "• Detalle: " + detalle + "\n" +
+                "• Precio: $" + precio + "\n";
     }
 }

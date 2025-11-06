@@ -48,11 +48,10 @@ public class Cuenta {
 
     @Override
     public String toString() {
-        return "Cuenta{" +
-                "id=" + id +
-                ", estadia=" + estadia +
-                ", monto cuenta=" + total +
-                ", pago=" + pago +
-                '}';
+        return "=== Cuenta ===\n" +
+                "• ID: " + id + "\n" +
+                "• Estadia: " + estadia + "\n" +
+                "• Monto total de la cuenta: " + total + "\n" +
+                "• Pago: " + pago + "\n";
     }
 }

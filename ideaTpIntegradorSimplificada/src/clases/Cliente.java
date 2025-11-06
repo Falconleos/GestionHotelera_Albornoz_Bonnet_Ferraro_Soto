@@ -35,11 +35,10 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Cliente{" +
-                "comentarios=" + comentarios +
-                ", ciudadOrigen='" + ciudadOrigen + '\'' +
-                '}' + '\n';
+        return super.toString() + "\n" +
+                "=== Datos del Cliente ===\n" +
+                "• Comentarios: " + comentarios + "\n" +
+                "• Ciudad de origen: " + ciudadOrigen + "\n";
     }
 
     //Metodo de dudosa utilidad

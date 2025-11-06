@@ -30,6 +30,7 @@ public class MenuReserva {
             System.out.println("6.Calcular promedio de noches de las reservas");
             System.out.println("7.Cancelar reserva");
             System.out.println("8.Listar todas las reservas");
+            System.out.println("9.Agregar comentario a una reservas");
             System.out.println("0.Salir");
             System.out.println("Elija la opcion:");
 
@@ -162,8 +163,22 @@ public class MenuReserva {
 
                 gestorReserva.agregar(reserva);
 
+                System.out.println("Desea agregar un comentario a la reserva: S/N");
+                String respuesta1 = sc.nextLine();
+
+                if(respuesta1.equalsIgnoreCase("s")){
+
+                    System.out.println("Ingrese el comentario:");
+                    String comentario = sc.nextLine();
+
+                    gestorReserva.generarComentario(comentario, reserva);
+                }
+
                 System.out.println("Reserva creada con éxito!");
                 System.out.println(reserva);
+
+
+
             }else{
                 System.out.println("Reserva rechazada...");
             }

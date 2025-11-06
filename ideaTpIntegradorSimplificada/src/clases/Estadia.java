@@ -108,17 +108,16 @@ public class Estadia {
 
     @Override
     public String toString() {
-        return "Estadia{" +
-                "idEstadia=" + idEstadia +
-                ", reserva=" + reserva +
-                ", cliente=" + cliente +
-                ", pax=" + pax +
-                ", fechaCheckIn=" + fechaCheckIn +
-                ", fechaCheckOut=" + fechaCheckOut +
-                ", listaServicios=" + listaServicios +
-                ", numHabitacion=" + numHabitacion +
-                ", cancelada=" + cancelada +
-                ", fechaCancelacion=" + fechaCancelacion +
-                '}';
+        return "=== Estadia ===\n" +
+                "• ID: " + idEstadia + "\n" +
+                "• Reserva: " + reserva + "\n" +
+                "• Cliente: " + cliente + "\n" +
+                "• Pax: " + pax + "\n" +
+                "• Check-in: " + fechaCheckIn + "\n" +
+                "• Check-out: " + fechaCheckOut + "\n" +
+                "• Servicios: " + listaServicios + "\n" +
+                "• Habitación Nº: " + numHabitacion + "\n" +
+                "• Cancelada: " + cancelada + "\n" +
+                "• Fecha de cancelación: " + fechaCancelacion + "\n";
     }
 }

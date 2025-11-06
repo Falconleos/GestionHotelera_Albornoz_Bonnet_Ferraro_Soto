@@ -130,19 +130,18 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" +
-                "idReserva=" + idReserva +
-                ", fechaIngreso=" + fechaIngreso +
-                ", fechaEgreso=" + fechaEgreso +
-                ", pax=" + pax +
-                ", cantidadNoches=" + cantidadNoches +
-                ", habitacion=" + habitacion +
-                ", valor= $" + valor +
-                ", nombreReferencia='" + nombreReferencia + '\'' +
-                ", apellidoReferencia='" + apellidoReferencia + '\'' +
-                ", celularReferencia='" + celularReferencia + '\'' +
-                ", detallesExtra='" + detallesExtra + '\'' +
-                ", personalResponsable='" + personalResponsable + '\'' +
-                '}';
+        return  "=== Reserva ===\n" +
+                "• ID: " + idReserva + "\n" +
+                "• Fecha ingreso: " + fechaIngreso + "\n" +
+                "• Fecha egreso: " + fechaEgreso + "\n" +
+                "• Pax: " + pax + "\n" +
+                "• Noches: " + cantidadNoches + "\n" +
+                "• Habitación: " + habitacion + "\n" +
+                "• Valor: $" + valor + "\n" +
+                "• Nombre referencia: " + nombreReferencia + "\n" +
+                "• Apellido referencia: " + apellidoReferencia + "\n" +
+                "• Celular referencia: " + celularReferencia + "\n" +
+                "• Detalles extra: " + detallesExtra + "\n" +
+                "• Responsable: " + personalResponsable + "\n";
     }
 }

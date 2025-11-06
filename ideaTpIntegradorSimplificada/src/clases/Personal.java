@@ -35,11 +35,10 @@ public class Personal extends Persona{
 
     @Override
     public String toString() {
-        return super.toString()+
-                "Personal{" +
-                "rol=" + rol +
-                ", turno=" + turno +
-                '}';
+        return  super.toString() +
+                "=== Personal ===\n" +
+                "• Rol: " + rol + "\n" +
+                "• Turno: " + turno + "\n";
     }
 }
 

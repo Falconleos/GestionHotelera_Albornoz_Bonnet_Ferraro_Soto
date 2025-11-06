@@ -71,14 +71,13 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "idPersona=" + idPersona +
-                ", dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", celular='" + celular + '\'' +
-                ", fechaAlta=" + fechaAlta +
-                '}';
+        return  "=== Persona ===\n" +
+                "• ID: " + idPersona + "\n" +
+                "• DNI: " + dni + "\n" +
+                "• Nombre: " + nombre + "\n" +
+                "• Apellido: " + apellido + "\n" +
+                "• Celular: " + celular + "\n" +
+                "• Fecha de alta: " + fechaAlta + "\n";
     }
 }
 
