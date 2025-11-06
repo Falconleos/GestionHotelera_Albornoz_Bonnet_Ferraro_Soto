@@ -82,7 +82,7 @@ public class GestorCuenta extends Gestor<Cuenta>{
         List<Cuenta> cuentasEncontradas = new ArrayList<>();
 
         for(Cuenta cuenta: lista){
-            if(!cuenta.isPago()){
+            if(cuenta.getEstadia().getFechaCheckOut().equals(LocalDate.now())){
                 cuentasEncontradas.add(cuenta);
             }
         }

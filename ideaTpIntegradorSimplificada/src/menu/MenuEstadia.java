@@ -221,30 +221,33 @@ public class MenuEstadia {
             System.out.println("aun no hay servicios que agregar...");
             serviciosSeleccionados = null;
         }else{
-
-            try {
                 boolean agregarMas = true;
 
                 while (agregarMas) {
-                    gestorServicio.mostrar();
-                    System.out.print("Ingrese el ID del servicio a agregar (0 para terminar): ");
-                    int idServicio = Integer.parseInt(sc.nextLine());
 
-                    if (idServicio == 0) {
-                        agregarMas = false;
-                    } else {
-                        Servicio s = gestorServicio.buscarServicioPorId(idServicio);
-                        if (s != null) {
-                            serviciosSeleccionados.add(s);
-                            System.out.println("✅ Servicio agregado: " + s.getDetalle());
+
+                    try{
+                        gestorServicio.mostrar();
+                        System.out.print("Ingrese el ID del servicio a agregar (0 para terminar): ");
+                        int idServicio = Integer.parseInt(sc.nextLine());
+
+                        if (idServicio == 0) {
+                            agregarMas = false;
                         } else {
-                            System.out.println("⚠️ No se encontró servicio con ese ID.");
+                            Servicio s = gestorServicio.buscarServicioPorId(idServicio);
+                            if (s != null) {
+                                serviciosSeleccionados.add(s);
+                                System.out.println("✅ Servicio agregado: " + s.getDetalle());
+                            } else {
+                                System.out.println("⚠️ No se encontró servicio con ese ID.");
+                            }
                         }
+                    }catch (NumberFormatException e){
+                        System.out.println("Formato de respuesta invalido");
                     }
+
                 }
-            }catch (NumberFormatException e){
-                System.out.println("Id invalido, agregar servicios luego");
-            }
+
 
         }
 
