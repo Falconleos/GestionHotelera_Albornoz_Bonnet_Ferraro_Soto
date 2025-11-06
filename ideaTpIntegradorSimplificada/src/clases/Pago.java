@@ -14,7 +14,7 @@ public class Pago {
     private int descuento;
     private double total;
 
-    public Pago(Cuenta cuenta, TipoPago tipoPago, int descuento) {
+    public Pago(Cuenta cuenta, TipoPago tipoPago, int descuento,double total) {
         this.idPago = contador++;
         this.nombre = cuenta.getEstadia().getCliente().getNombre();
         this.apellido = cuenta.getEstadia().getCliente().getApellido();
@@ -22,7 +22,7 @@ public class Pago {
         this.cuenta = cuenta;
         this.tipoPago = tipoPago;
         this.descuento = descuento;
-        this.total = cuenta.getTotal() * (1-(descuento/100));
+        this.total = total;
     }
 
     public static int getContador() {
@@ -107,7 +107,7 @@ public class Pago {
                 ", cuenta=" + cuenta +
                 ", tipoPago=" + tipoPago +
                 ", descuento=" + descuento +
-                ", total=" + total +
+                ", total Final=" + total +
                 '}';
     }
 }

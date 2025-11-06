@@ -51,7 +51,7 @@ public class Cuenta {
         return "Cuenta{" +
                 "id=" + id +
                 ", estadia=" + estadia +
-                ", total=" + total +
+                ", monto cuenta=" + total +
                 ", pago=" + pago +
                 '}';
     }

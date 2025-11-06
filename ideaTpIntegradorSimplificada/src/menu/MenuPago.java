@@ -119,7 +119,7 @@ public class MenuPago {
                     case 0:
                         salir = true;
                         System.out.println("🔹 Volviendo al menú...");
-                        break;
+                        return;
                     default:
                         System.out.println("⚠️ Opción incorrecta.");
                 }
@@ -127,16 +127,23 @@ public class MenuPago {
 
             int descuento = -1;
 
-            while (descuento == -1){
+            while (descuento <0){
                 try {
                     System.out.println("Ingrese porcentaje de descuento o 0 Sin descuento");
                     descuento = Integer.parseInt(sc.nextLine());
+
+                    if(descuento<0){
+                        System.out.println("Ingrese un descuento valido o 0 sin descuento");
+                    }
+
                 } catch (NumberFormatException e) {
                     System.out.println("⚠ Formato inválido. Ingrese un número.");
                 }
             }
 
-            Pago pagoConcretado = new Pago(cuentaSeleccionada,tipoPago,descuento);
+            double total = cuentaSeleccionada.getTotal() - ( cuentaSeleccionada.getTotal() * (descuento / 100.0) );
+
+            Pago pagoConcretado = new Pago(cuentaSeleccionada,tipoPago,descuento,total);
             gestorPago.agregar(pagoConcretado);
 
             System.out.println("Pago concretado: ");
