@@ -215,6 +215,8 @@ public class MenuHabitacion {
             gestorHabitacion.agregar(new Habitacion(numeroHabitacion,tipo,capacidadMaxima,precio,descripcion));
             System.out.println("Habitacion " + tipo + " agregada con exito");
 
+            gestorHabitacion.ordenarHabitacion();
+
         }catch (NumberFormatException e){
             System.out.println(e.getMessage());
         }catch (PrecioInvalidoException e){
