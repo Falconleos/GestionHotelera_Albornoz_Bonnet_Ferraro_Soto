@@ -75,6 +75,9 @@ public class MenuHabitacion {
                 case 9:
                     listarHabitacionesSinReserva(gestorHabitacion,gestorReserva);
                     break;
+                case 10:
+                    ordenarPorCapacidad(gestorHabitacion);
+                    break;
                 case 0:
                     continuar = false;
                     System.out.println("Saliendo...");
@@ -221,6 +224,10 @@ public class MenuHabitacion {
 
     public static void eliminarHabitacion(Scanner sc,GestorHabitacion gestorHabitacion){
         try {
+            if(gestorHabitacion.getLista().isEmpty()){
+                throw new ListaVaciaException("Aun no hay habitaciones cargadas...");
+            }
+
             System.out.println("Ingrese el numero de habitacion a borrar:");
             int numeroBorrar = Integer.parseInt(sc.nextLine());
 
@@ -245,6 +252,9 @@ public class MenuHabitacion {
     public static void listarHabitacionesXcapacidad(Scanner sc,GestorHabitacion gestorHabitacion){
 
         try {
+            if(gestorHabitacion.getLista().isEmpty()){
+                throw new ListaVaciaException("Aun no hay habitaciones cargadas...");
+            }
 
             System.out.println("Ingrese cantidad de PAX:");
             int pax = Integer.parseInt(sc.nextLine());
@@ -306,6 +316,10 @@ public class MenuHabitacion {
 
         try{
 
+            if(gestorHabitacion.getLista().isEmpty()){
+                throw new ListaVaciaException("Aun no hay habitaciones cargadas...");
+            }
+
             System.out.println("Ingrese el porcentaje a aumentar:");
             int porcentaje = Integer.parseInt(sc.nextLine());
 
@@ -325,6 +339,9 @@ public class MenuHabitacion {
     public static void rebajarValorHabitaciones(Scanner sc,GestorHabitacion gestorHabitacion){
 
         try{
+            if(gestorHabitacion.getLista().isEmpty()){
+                throw new ListaVaciaException("Aun no hay habitaciones cargadas...");
+            }
 
             System.out.println("Ingrese el porcentaje a rebajar:");
             int porcentaje = Integer.parseInt(sc.nextLine());
@@ -388,6 +405,19 @@ public class MenuHabitacion {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void ordenarPorCapacidad(GestorHabitacion gestorHabitacion){
+        try{
+            if(gestorHabitacion.getLista().isEmpty()){
+                throw new ListaVaciaException("No hay habitaciones cargadas...");
+            }
+
+            gestorHabitacion.ordenarHabitacion();
+
+        } catch (ListaVaciaException e) {
+            System.out.println(e.getMessage());;
+        }
     }
 
 
