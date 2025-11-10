@@ -40,6 +40,10 @@ public class Reserva {
         return idReserva;
     }
 
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
@@ -144,4 +148,11 @@ public class Reserva {
                 "• Detalles extra: " + detallesExtra + "\n" +
                 "• Responsable: " + personalResponsable + "\n";
     }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
+    }
+
 }

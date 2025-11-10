@@ -30,6 +30,13 @@ public class Estadia {
         this.fechaCancelacion = null;
     }
 
+    public Estadia() {
+    }
+
+    public void setIdEstadia(int idEstadia) {
+        this.idEstadia = idEstadia;
+    }
+
     public int getIdEstadia() {
         return idEstadia;
     }
@@ -120,4 +127,11 @@ public class Estadia {
                 "• Cancelada: " + cancelada + "\n" +
                 "• Fecha de cancelación: " + fechaCancelacion + "\n";
     }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
+    }
+
 }

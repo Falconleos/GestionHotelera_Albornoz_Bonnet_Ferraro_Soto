@@ -14,6 +14,7 @@ public class Pago {
     private int descuento;
     private double total;
 
+
     public Pago(Cuenta cuenta, TipoPago tipoPago, int descuento,double total) {
         this.idPago = contador++;
         this.nombre = cuenta.getEstadia().getCliente().getNombre();
@@ -23,6 +24,9 @@ public class Pago {
         this.tipoPago = tipoPago;
         this.descuento = descuento;
         this.total = total;
+    }
+
+    public Pago() {
     }
 
     public static int getContador() {
@@ -107,5 +111,11 @@ public class Pago {
                 "• Monto final: " + total + "\n" +
                 "• Tipo de pago: " + tipoPago + "\n" +
                 "• Cuenta asociada: " + cuenta.getId() + "\n";
+    }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
     }
 }

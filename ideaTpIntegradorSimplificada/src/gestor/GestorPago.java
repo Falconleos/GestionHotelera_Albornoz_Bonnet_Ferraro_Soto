@@ -4,6 +4,7 @@ import clases.Cuenta;
 import clases.Pago;
 import excepcions.ListaVaciaException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GestorPago extends Gestor<Pago>{
@@ -33,6 +34,33 @@ public class GestorPago extends Gestor<Pago>{
         }
         return null;
     }
+
+    public List<Pago> buscarPagoPorAapellido(String apellido)throws ListaVaciaException{
+        validarListaVacia();
+        List<Pago>encontrados = new ArrayList<>();
+        for(Pago p : lista){
+            if(p.getApellido().equalsIgnoreCase(apellido)){
+                encontrados.add(p);
+            }
+        }
+        return encontrados;
+    }
+
+    public Pago elegirPagoPorId(List<Pago>lista,int idPago)throws ListaVaciaException{
+        if(listarPagos().isEmpty()){
+            throw new ListaVaciaException("No hay pagos seleccionados...");
+        }
+        for(Pago p : listarPagos()){
+            if(p.getIdPago() == idPago){
+                return p;
+            }
+        }
+        return null;
+    }
+
+
+
+
 
 
 

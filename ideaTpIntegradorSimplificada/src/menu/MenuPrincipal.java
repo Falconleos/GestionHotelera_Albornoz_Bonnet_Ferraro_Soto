@@ -1,11 +1,13 @@
 package menu;
 
 import claseHotel.Hotel;
-import excepcions.PersonaNoEncontradaException;
+import manejoJSON.GestionJSONdeserializar;
+import manejoJSON.GestionJSONserializar;
 
 import java.util.Scanner;
 
 public class MenuPrincipal {
+
 
     private Hotel hotel;
 
@@ -30,11 +32,12 @@ public class MenuPrincipal {
             System.out.println(" 🛏️  1. Gestión de Habitaciones");
             System.out.println(" 📅  2. Gestión de Reservas");
             System.out.println(" 👤  3. Gestión de Clientes");
-            System.out.println(" 🧑‍💼  4. Gestión del Personal");
+            System.out.println(" 🧑‍💼4. Gestión del Personal");
             System.out.println(" 🏨  5. Gestión de Estadías");
             System.out.println(" 💳  6. Gestión de Cuentas");
             System.out.println(" ✅  7. Gestión de Pagos");
             System.out.println(" 🛠️  8. Gestión de Servicios");
+            System.out.println(" 🛠️  9. Guardar Cambios en el sistema");
             System.out.println("----------------------------------------------");
             System.out.println(" 🚪  0. Salir");
             System.out.println("==============================================");
@@ -74,6 +77,9 @@ public class MenuPrincipal {
                     break;
                 case 8:
                     MenuServicio.mostrarMenu(hotel.getGestorEstadia(), hotel.getGestorReserva(), hotel.getGestorCliente(), hotel.getGestorServicio(), hotel.getGestorHabitacion(), hotel.getGestorCuenta(), sc);
+                    break;
+                case 9:
+                    GestionJSONserializar.modificarJson(hotel);
                     break;
                 case 0:
                     continuar = false;

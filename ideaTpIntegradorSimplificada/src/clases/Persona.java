@@ -2,7 +2,6 @@ package clases;
 
 import java.time.LocalDate;
 
-
 public abstract class Persona {
 
     private static int contador = 1;
@@ -23,6 +22,10 @@ public abstract class Persona {
     }
 
     public Persona() {
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public int getIdPersona() {
@@ -79,5 +82,12 @@ public abstract class Persona {
                 "• Celular: " + celular + "\n" +
                 "• Fecha de alta: " + fechaAlta + "\n";
     }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
+    }
+
 }
 

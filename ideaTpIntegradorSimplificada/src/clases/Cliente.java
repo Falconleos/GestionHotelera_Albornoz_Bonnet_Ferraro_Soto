@@ -17,6 +17,14 @@ public class Cliente extends Persona{
     public Cliente() {
     }
 
+    public List<String> getComentarios() { //agregado para json
+        return comentarios;
+    }
+
+    public void setComentarios(List<String> comentarios) {
+        this.comentarios = comentarios;
+    }
+
     public List<String> getComentario() {
         return comentarios;
     }

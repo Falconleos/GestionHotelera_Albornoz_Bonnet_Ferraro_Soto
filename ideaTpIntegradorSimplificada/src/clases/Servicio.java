@@ -20,6 +20,10 @@ public class Servicio {
         return idServicio;
     }
 
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
+    }
+
     public String getDetalle() {
         return detalle;
     }
@@ -43,4 +47,11 @@ public class Servicio {
                 "• Detalle: " + detalle + "\n" +
                 "• Precio: $" + precio + "\n";
     }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
+    }
+
 }

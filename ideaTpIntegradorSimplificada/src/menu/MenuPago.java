@@ -44,10 +44,12 @@ public class MenuPago {
                     mostrarPagos(gestorPago);
                     break;
                 case 3:
+                    buscarPagoPorApellido(sc,gestorPago);
                     break;
                 case 4:
                     break;
                 case 5:
+                    eliminarPagoPorApellido(sc,gestorPago);
                     break;
                 case 0:
                     salir = true;
@@ -178,6 +180,73 @@ public class MenuPago {
         }
     }
 
+    public static void buscarPagoPorApellido(Scanner sc, GestorPago gestorPago){
+        try {
+
+            if(gestorPago.getLista().isEmpty()){
+                throw new ListaVaciaException("aun no hay pagos registrados...");
+            }
+
+            System.out.println("Ingrese el apellido:");
+            String apellidoBuscar = sc.nextLine();
+
+            List<Pago>pagosEncontrados = gestorPago.buscarPagoPorAapellido(apellidoBuscar);
+
+            if(pagosEncontrados.isEmpty()){
+                System.out.println("Aun no hay pagos registrados de " + apellidoBuscar);
+            }else {
+                System.out.println("Pagos encontrados de " + apellidoBuscar);
+                for(Pago p : pagosEncontrados){
+                    System.out.println(p);
+                }
+            }
+        }catch (ListaVaciaException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void eliminarPagoPorApellido(Scanner sc,GestorPago gestorPago){
+
+        try {
+
+            if(gestorPago.getLista().isEmpty()){
+                throw new ListaVaciaException("Aun no hay pagos registrados...");
+            }
+
+            System.out.println("Ingrese el apellido del pago a eliminar:");
+            String apellido = sc.nextLine();
+
+            List<Pago>pagosEncontrados = gestorPago.buscarPagoPorAapellido(apellido);
+
+            if(pagosEncontrados.isEmpty()){
+                System.out.println("Aun no hay pagos registrados de " + apellido);
+            }else {
+                System.out.println("Pagos encontrados de " + apellido);
+                for(Pago p : pagosEncontrados){
+                    System.out.println(p);
+                }
+
+                System.out.println("Seleccione el id del pago a eliminar");
+                int idSeleccionado = Integer.parseInt(sc.nextLine());
+
+                Pago pagoEliminar = gestorPago.elegirPagoPorId(pagosEncontrados,idSeleccionado);
+
+                if(pagoEliminar == null){
+                    System.out.println("Id inexistente...");
+                }else {
+                    gestorPago.eliminar(pagoEliminar);
+                    System.out.println("Pago de " +apellido+ " eliminado correctamente...");
+                }
+
+            }
+
+        }catch (ListaVaciaException e){
+            System.out.println(e.getMessage());
+        }catch (NumberFormatException e){
+            System.out.println("id invalido...");
+        }
+
+    }
 
 
 }

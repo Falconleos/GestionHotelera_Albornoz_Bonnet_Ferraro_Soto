@@ -1,6 +1,5 @@
 package claseHotel;
 
-import clases.Habitacion;
 import gestor.*;
 
 public class Hotel {
@@ -22,7 +21,7 @@ public class Hotel {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         //inicializar todos los gestores
-        this.gestorHabitacion = new GestorHabitacion();//los inicializamos vacíos
+        this.gestorHabitacion = new GestorHabitacion();
         this.gestorReserva = new GestorReserva();
         this.gestorCliente = new GestorCliente();
         this.gestorPersonal = new GestorPersonal();
@@ -30,6 +29,9 @@ public class Hotel {
         this.gestorServicio = new GestorServicio();
         this.gestorCuenta = new GestorCuenta();
         this.gestorPago = new GestorPago();
+    }
+
+    public Hotel() {
     }
 
     public String getNombre() {

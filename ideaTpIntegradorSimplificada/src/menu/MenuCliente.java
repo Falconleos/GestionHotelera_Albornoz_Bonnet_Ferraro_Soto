@@ -2,6 +2,7 @@ package menu;
 
 import claseHotel.Hotel;
 import clases.Cliente;
+import excepcions.ListaVaciaException;
 import excepcions.PersonaNoEncontradaException;
 import gestor.GestorCliente;
 
@@ -40,7 +41,13 @@ public class MenuCliente {
                     eliminarCliente(sc, gestorCliente);
                     break;
                 case 3:
-                    gestorCliente.mostrar();
+
+                    try {
+                        gestorCliente.mostrar();
+                    }catch (ListaVaciaException e){
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 case 4:
                     agregarComentario(sc, gestorCliente);
@@ -81,7 +88,10 @@ public class MenuCliente {
 
             int indiceElementoAEliminar = gestorCliente.buscarIndicePorTexto(dni);
             if (indiceElementoAEliminar < 0) throw new PersonaNoEncontradaException("Cliente no encontrado");
-            gestorCliente.eliminar(gestorCliente.getLista().get(indiceElementoAEliminar));
+            if(gestorCliente.eliminar(gestorCliente.getLista().get(indiceElementoAEliminar))){
+                System.out.println("Cliente eliminado con exito...");
+            }
+
 
         }catch (PersonaNoEncontradaException e){
             System.out.println(e.getMessage());

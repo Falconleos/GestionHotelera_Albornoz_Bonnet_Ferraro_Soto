@@ -18,6 +18,10 @@ public class Cuenta {
     public Cuenta() {
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,4 +58,11 @@ public class Cuenta {
                 "• Monto total de la cuenta: " + total + "\n" +
                 "• Pago: " + pago + "\n";
     }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
+    }
+
 }

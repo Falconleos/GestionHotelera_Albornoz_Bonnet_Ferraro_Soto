@@ -23,16 +23,15 @@ public class MenuHabitacion {
             System.out.println("==============================================");
             System.out.println("            GESTIÓN DE HABITACIONES 🛏️        ");
             System.out.println("==============================================");
-            System.out.println("  1. Agregar habitaciones por defecto");
-            System.out.println("  2. Agregar habitación");
-            System.out.println("  3. Eliminar habitación");
-            System.out.println("  4. Listar habitaciones");
-            System.out.println("  5. Listar habitaciones por capacidad");
-            System.out.println("  6. Buscar habitación por número");
-            System.out.println("  7. Aumentar valor de las habitaciones");
-            System.out.println("  8. Rebajar valor de las habitaciones");
-            System.out.println("  9. Listar habitaciones sin reservas");
-            System.out.println(" 10. Ordenar habitaciones por capacidad");
+            System.out.println("  1. Agregar habitación");
+            System.out.println("  2. Eliminar habitación");
+            System.out.println("  3. Listar habitaciones");
+            System.out.println("  4. Listar habitaciones por capacidad");
+            System.out.println("  5. Buscar habitación por número");
+            System.out.println("  6. Aumentar valor de las habitaciones");
+            System.out.println("  7. Rebajar valor de las habitaciones");
+            System.out.println("  8. Listar habitaciones sin reservas");
+            System.out.println("  9. Ordenar habitaciones por capacidad");
             System.out.println("----------------------------------------------");
             System.out.println("  0. Volver al menú principal");
             System.out.println("==============================================");
@@ -49,33 +48,30 @@ public class MenuHabitacion {
             switch (opcion) {
 
                 case 1:
-                    agregar10HabitacionesPorDefecto(sc,gestorHabitacion);
-                    break;
-                case 2:
                     agregarUnaHabitacion(sc,gestorHabitacion);
                     break;
-                case 3:
+                case 2:
                     eliminarHabitacion(sc,gestorHabitacion);
                     break;
-                case 4:
+                case 3:
                     listarTodasHabitacions(gestorHabitacion);
                     break;
-                case 5:
+                case 4:
                     listarHabitacionesXcapacidad(sc,gestorHabitacion);
                     break;
-                case 6:
+                case 5:
                     buscarHabitacionPorNumero(sc,gestorHabitacion);
                     break;
-                case 7:
+                case 6:
                     aumentarValorHabitaciones(sc,gestorHabitacion);
                     break;
-                case 8:
+                case 7:
                     rebajarValorHabitaciones(sc,gestorHabitacion);
                     break;
-                case 9:
+                case 8:
                     listarHabitacionesSinReserva(gestorHabitacion,gestorReserva);
                     break;
-                case 10:
+                case 9:
                     ordenarPorCapacidad(gestorHabitacion);
                     break;
                 case 0:

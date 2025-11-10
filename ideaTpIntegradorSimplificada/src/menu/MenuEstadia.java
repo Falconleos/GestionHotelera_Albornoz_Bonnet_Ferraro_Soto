@@ -60,7 +60,7 @@ public class MenuEstadia {
 
                     break;
                 case 3:
-                        cancelarEstadia(sc,gestorEstadia,gestorPago,gestorCuenta,gestorReserva);
+                    cancelarEstadia(sc,gestorEstadia,gestorPago,gestorCuenta,gestorReserva);
                     break;
                 case 4:
 

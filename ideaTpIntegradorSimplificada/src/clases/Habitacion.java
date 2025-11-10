@@ -2,12 +2,12 @@ package clases;
 
 public class Habitacion implements Comparable<Habitacion> {
     /*
-    * numero
-    * tipo
-    * capacidadMaxima
-    * precio
-    * descripcion
-    * */
+     * numero
+     * tipo
+     * capacidadMaxima
+     * precio
+     * descripcion
+     * */
     private static int contador = 1;
     private int idHabitacion;
     private int numero;
@@ -26,6 +26,10 @@ public class Habitacion implements Comparable<Habitacion> {
     }
 
     public Habitacion() {
+    }
+
+    public void setIdHabitacion(int idHabitacion) {
+        this.idHabitacion = idHabitacion;
     }
 
     public int getIdHabitacion() {
@@ -86,5 +90,11 @@ public class Habitacion implements Comparable<Habitacion> {
     @Override
     public int compareTo(Habitacion o) {
         return Integer.compare(capacidadMaxima,o.getCapacidadMaxima());
+    }
+
+    public static void actualizarContador(int ultimoId) {
+        if (ultimoId >= contador) {
+            contador = ultimoId + 1;
+        }
     }
 }
