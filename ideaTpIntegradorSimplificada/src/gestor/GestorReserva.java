@@ -139,6 +139,16 @@ public class GestorReserva extends Gestor<Reserva>{
         return filtradas;
     }
 
+    public Reserva buscarReservaPorId(int id){
+        validarListaVacia();
+        for(Reserva r : lista){
+            if(r.getIdReserva() == id){
+                return r;
+            }
+        }
+        return null;
+    }
+
     public void generarComentario(String comentario,Reserva reserva){
         reserva.setDetallesExtra(comentario);
         System.out.println("Comentario agregado exitosamente.");

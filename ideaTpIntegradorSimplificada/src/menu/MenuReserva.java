@@ -3,6 +3,7 @@ package menu;
 import claseHotel.Hotel;
 import clases.Habitacion;
 import clases.Reserva;
+import excepcions.ElementoNuloException;
 import excepcions.ListaVaciaException;
 import gestor.GestorHabitacion;
 import gestor.GestorReserva;
@@ -79,6 +80,9 @@ public class MenuReserva {
                         System.out.println(e.getMessage());
                     }
 
+                    break;
+                case 9:
+                    agregarComentarioReserva(sc,gestorReserva);
                     break;
                 case 0:
                     continuar = false;
@@ -164,7 +168,8 @@ public class MenuReserva {
                 System.out.println("Número: " + h.getNumero()
                         + " | Tipo: " + h.getTipo()
                         + " | Capacidad: " + h.getCapacidadMaxima()
-                        + " | Precio: $" + h.getPrecio());
+                        + " | Precio: $" + h.getPrecio()
+                        + " | Descripcion: " + h.getDescripcion());
             }
 
             // ✅ Elegir número
@@ -392,6 +397,45 @@ public class MenuReserva {
                     System.out.println("Formato inválido. Ingrese un número.");
                 }
             }
+        }
+    }
+
+    public static void agregarComentarioReserva(Scanner sc ,GestorReserva gestorReserva){
+
+        System.out.println("Apellido de la reserva:");
+        String apellido = sc.nextLine();
+
+        List<Reserva>reservasEncontradas = gestorReserva.buscarReservaPorApellido(apellido,gestorReserva);
+
+        if(reservasEncontradas.isEmpty()){
+            System.out.println("No existen reservas con el apellido " + apellido);
+        }else {
+            System.out.println("Reservas encontradas apellido " + apellido);
+            for(Reserva r : reservasEncontradas){
+                System.out.println(r);
+            }
+        }
+
+        System.out.println("Seleccione el id de la reserva a agregar el comentario:");
+        int idReserva = 0;
+        try {
+            idReserva = Integer.parseInt(sc.nextLine());
+
+            Reserva r = gestorReserva.buscarReservaPorId(idReserva);
+
+            if(r==null){
+                throw new ElementoNuloException("Reserva no encontrada");
+            }
+
+            System.out.println("Ingrese el comentario:");
+            String comentario = sc.nextLine();
+
+            gestorReserva.generarComentario(comentario,r);
+
+        }catch (NumberFormatException e) {
+            System.out.println("Formato invalido...");
+        }catch (ElementoNuloException e) {
+            System.out.println(e.getMessage());
         }
     }
 
