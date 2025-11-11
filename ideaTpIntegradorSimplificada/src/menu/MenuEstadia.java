@@ -23,7 +23,7 @@ public class MenuEstadia {
         boolean salir = false;
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-            
+
             System.out.println("==============================================");
             System.out.println("                MENÚ ESTADÍAS 🏨              ");
             System.out.println("==============================================");
@@ -60,7 +60,11 @@ public class MenuEstadia {
 
                     break;
                 case 3:
-                    cancelarEstadia(sc,gestorEstadia,gestorPago,gestorCuenta,gestorReserva);
+                    try {
+                        cancelarEstadia(sc,gestorEstadia,gestorPago,gestorCuenta,gestorReserva);
+                    }catch (ElementoNuloException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 4:
 
