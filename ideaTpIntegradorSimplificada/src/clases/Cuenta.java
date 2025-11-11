@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.Objects;
+
 public class Cuenta {
 
     private static int contador =1;
@@ -65,4 +67,14 @@ public class Cuenta {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Cuenta cuenta)) return false;
+        return id == cuenta.id && Double.compare(total, cuenta.total) == 0 && pago == cuenta.pago && Objects.equals(estadia, cuenta.estadia);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, estadia, total, pago);
+    }
 }

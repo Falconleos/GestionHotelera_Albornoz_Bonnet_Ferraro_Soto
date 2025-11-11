@@ -24,25 +24,14 @@ public class GestorEstadia extends Gestor<Estadia>{
     public Estadia buscarEstadiaXHabitacion(int numHabitacion) {
         validarListaVacia();
 
-        Estadia estadiaEncontrada = null;
-        LocalDate hoy = LocalDate.now();
-
         for (Estadia estadia : lista) {
-
-            boolean mismaHabitacion = estadia.getNumHabitacion() == numHabitacion;
-
-            boolean dentroDeFechas =
-                    (hoy.isEqual(estadia.getFechaCheckIn()) ||
-                            hoy.isEqual(estadia.getFechaCheckOut()) ||
-                            (hoy.isAfter(estadia.getFechaCheckIn()) && hoy.isBefore(estadia.getFechaCheckOut())));
-
-            if (mismaHabitacion && dentroDeFechas) {
-                estadiaEncontrada = estadia;
-                break;
+            if (estadia.getNumHabitacion() == numHabitacion) {
+                return estadia;
             }
         }
-        return estadiaEncontrada;
+        return null;
     }
+
 
     public List<Estadia>buscarEstadiaPorApellido(String apellido){
         validarListaVacia();

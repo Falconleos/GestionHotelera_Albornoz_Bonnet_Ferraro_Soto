@@ -2,6 +2,7 @@ package clases;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Estadia {
 
@@ -134,4 +135,14 @@ public class Estadia {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Estadia estadia)) return false;
+        return idEstadia == estadia.idEstadia && pax == estadia.pax && numHabitacion == estadia.numHabitacion && cancelada == estadia.cancelada && Objects.equals(reserva, estadia.reserva) && Objects.equals(cliente, estadia.cliente) && Objects.equals(fechaCheckIn, estadia.fechaCheckIn) && Objects.equals(fechaCheckOut, estadia.fechaCheckOut) && Objects.equals(listaServicios, estadia.listaServicios) && Objects.equals(fechaCancelacion, estadia.fechaCancelacion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEstadia, reserva, cliente, pax, fechaCheckIn, fechaCheckOut, listaServicios, numHabitacion, cancelada, fechaCancelacion);
+    }
 }
