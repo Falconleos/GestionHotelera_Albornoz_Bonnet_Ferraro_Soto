@@ -1,8 +1,9 @@
 package clases;
 
 import enums.TipoPago;
+import interfaces.I_IdInicializable;
 
-public class Pago {
+public class Pago implements I_IdInicializable {
 
     private static int contador = 1;
     private int idPago;

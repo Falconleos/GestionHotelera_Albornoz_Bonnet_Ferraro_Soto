@@ -1,8 +1,10 @@
 package clases;
 
+import interfaces.I_IdInicializable;
+
 import java.time.LocalDate;
 
-public abstract class Persona {
+public abstract class Persona implements I_IdInicializable {
 
     private static int contador = 1;
     private int idPersona;
@@ -88,6 +90,5 @@ public abstract class Persona {
             contador = ultimoId + 1;
         }
     }
-
 }
 

@@ -1,8 +1,10 @@
 package clases;
 
+import interfaces.I_IdInicializable;
+
 import java.util.Objects;
 
-public class Cuenta {
+public class Cuenta implements I_IdInicializable {
 
     private static int contador =1;
     private int id;

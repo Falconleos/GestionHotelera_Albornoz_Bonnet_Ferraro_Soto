@@ -1,6 +1,8 @@
 package clases;
 
-public class Servicio {
+import interfaces.I_IdInicializable;
+
+public class Servicio implements I_IdInicializable {
 
     private static int contador = 1;
     private int idServicio;

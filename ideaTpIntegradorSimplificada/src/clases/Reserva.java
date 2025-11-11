@@ -1,9 +1,11 @@
 package clases;
 
+import interfaces.I_IdInicializable;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Reserva {
+public class Reserva implements I_IdInicializable {
     private static int contador = 1;
     private int idReserva;
     private LocalDate fechaIngreso;

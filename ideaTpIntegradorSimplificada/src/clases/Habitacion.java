@@ -1,6 +1,8 @@
 package clases;
 
-public class Habitacion implements Comparable<Habitacion> {
+import interfaces.I_IdInicializable;
+
+public class Habitacion implements Comparable<Habitacion>, I_IdInicializable {
     /*
      * numero
      * tipo

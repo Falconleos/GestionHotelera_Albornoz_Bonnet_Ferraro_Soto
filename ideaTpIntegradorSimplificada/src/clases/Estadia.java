@@ -1,10 +1,12 @@
 package clases;
 
+import interfaces.I_IdInicializable;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Estadia {
+public class Estadia implements I_IdInicializable {
 
     private static int contador = 1;
     private int idEstadia;
