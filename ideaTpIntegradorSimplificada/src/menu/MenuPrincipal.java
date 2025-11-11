@@ -1,6 +1,7 @@
 package menu;
 
 import claseHotel.Hotel;
+import clases.Estadia;
 import manejoJSON.GestionJSONdeserializar;
 import manejoJSON.GestionJSONserializar;
 
@@ -22,6 +23,7 @@ public class MenuPrincipal {
 
         while (continuar){
             Hotel.limpiarPantallaMenu();
+
 
             System.out.println("==============================================");
             System.out.println("               MENU PRINCIPAL                 ");

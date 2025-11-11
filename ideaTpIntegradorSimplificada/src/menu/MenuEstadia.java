@@ -23,7 +23,7 @@ public class MenuEstadia {
         boolean salir = false;
         while (!salir) {
             Hotel.limpiarPantallaSubMenu();
-
+            
             System.out.println("==============================================");
             System.out.println("                MENÚ ESTADÍAS 🏨              ");
             System.out.println("==============================================");
@@ -396,18 +396,14 @@ public class MenuEstadia {
                 throw new ElementoNuloException("No existe estadia con ese numero de habitacion/Revisar numero de habitacion o estadias");
             }
 
-
             System.out.println("Estadia:");
             System.out.println(estadiaEncontrada);
             //busco la cuenta y verifico que la cuenta este saldada
-            Cuenta cuentaSeleccionada = null;
 
-            for(Cuenta c : gestorCuenta.getLista()){
-                if(c.getEstadia().equals(estadiaEncontrada)){
-                    cuentaSeleccionada = c;
-                    break;
-                }
-            }
+            Cuenta cuentaSeleccionada = gestorCuenta.devorlverCuentaXestadia(estadiaEncontrada);
+            System.out.println(cuentaSeleccionada);
+
+
 
             if(cuentaSeleccionada.isPago()){
 
