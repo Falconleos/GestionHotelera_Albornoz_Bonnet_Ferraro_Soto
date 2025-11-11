@@ -32,7 +32,7 @@ public class MenuPrincipal {
             System.out.println(" 🛏️  1. Gestión de Habitaciones");
             System.out.println(" 📅  2. Gestión de Reservas");
             System.out.println(" 👤  3. Gestión de Clientes");
-            System.out.println(" 🧑‍💼4. Gestión del Personal");
+            System.out.println(" 🧑‍💼  4. Gestión del Personal");
             System.out.println(" 🏨  5. Gestión de Estadías");
             System.out.println(" 💳  6. Gestión de Cuentas");
             System.out.println(" ✅  7. Gestión de Pagos");
