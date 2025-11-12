@@ -32,7 +32,7 @@ public class Reserva implements I_IdInicializable {
         this.nombreReferencia = nombreReferencia;
         this.apellidoReferencia = apellidoReferencia;
         this.celularReferencia = celularReferencia;
-        this.detallesExtra = detallesExtra != null && !detallesExtra.isBlank() ? detallesExtra : "sin detalles extra";;
+        this.detallesExtra = detallesExtra != null && !detallesExtra.isBlank() ? detallesExtra : "sin detalles extra";
         this.personalResponsable = personalResponsable;
     }
 

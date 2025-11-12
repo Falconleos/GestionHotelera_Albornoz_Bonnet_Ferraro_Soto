@@ -17,51 +17,7 @@ public class GestorReserva extends Gestor<Reserva>{
         }
     }
 
-    public Habitacion seleccionarHabitacion(GestorHabitacion gestorHabitacion,
-                                            LocalDate ingreso,
-                                            LocalDate egreso,
-                                            int pax) throws ListaVaciaException {
-
-
-        //Filtrar habitaciones por capacidad
-        List<Habitacion> habitacionesPosibles = gestorHabitacion.listarHabitacionesXcapacidad(pax);
-
-        //Si no hay reservas aún, devolver directamente la primera habitación posible
-        if (lista.isEmpty()) {
-            return habitacionesPosibles.get(0);
-        }
-
-        //Si hay reservas, verificar disponibilidad por fechas
-        List<Habitacion> habitacionesDisponibles = new ArrayList<>();
-
-        for (Habitacion h : habitacionesPosibles) {
-            boolean disponible = true;
-
-            for (Reserva r : lista) {
-                if (r.getHabitacion().equals(h)) {
-                    //Permitir ocupar el mismo día que otra reserva se libera
-                    boolean noSolapa = egreso.isBefore(r.getFechaIngreso()) || egreso.isEqual(r.getFechaIngreso())
-                            || ingreso.isAfter(r.getFechaEgreso()) || ingreso.isEqual(r.getFechaEgreso());
-
-                    if (!noSolapa) {
-                        disponible = false;
-                        break;
-                    }
-                }
-            }
-
-            if (disponible) {
-                habitacionesDisponibles.add(h);
-            }
-        }
-
-        //Si no se encontró ninguna disponible
-        if (habitacionesDisponibles.isEmpty()) {
-            throw new ListaVaciaException("No hay habitaciones disponibles para esas fechas y cantidad de personas.");
-        }
-        //Retorna la primera disponible
-        return habitacionesDisponibles.get(0);
-    }
+    
 
     public List<Reserva> listarXapellidoReferencial(String apellido){
         validarListaVacia();
