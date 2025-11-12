@@ -76,7 +76,7 @@ public class MenuPago {
             if(estadiaEncontrada == null){
                 throw new ElementoNuloException("No existe estadia con ese numero de habitacion/Revisar numero de habitacion o estadias");
             }
-            
+
             Cuenta cuentaSeleccionada = gestorCuenta.devorlverCuentaXestadia(estadiaEncontrada);
 
             if (cuentaSeleccionada == null){
@@ -158,7 +158,7 @@ public class MenuPago {
 
             cuentaSeleccionada.setPago(true); //cuenta calificada como abonada...
 
-            System.out.println("Pago concretado: ");
+            System.out.println("Pago a efectuar: ");
             System.out.println(pagoConcretado);
 
 
