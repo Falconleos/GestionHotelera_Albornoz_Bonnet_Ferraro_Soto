@@ -90,6 +90,17 @@ public class GestorHabitacion extends Gestor<Habitacion>{
         System.out.println("Habitaciones orenadas por capacidad maxima...");
     }
 
+    public void modificarHabitacion(Habitacion habitacion,String tipo,int capacidad,double precio,String descripcion)throws ListaVaciaException{
+        validarListaVacia();
+        habitacion.setCapacidadMaxima(capacidad);
+        habitacion.setTipo(tipo);
+        habitacion.setPrecio(precio);
+        habitacion.setDescripcion(descripcion);
+        System.out.println("Habitacion Modificado correctamente...");
+
+        ordenarHabitacion();
+    }
+
     //Implementar metodo abstracto
 
 

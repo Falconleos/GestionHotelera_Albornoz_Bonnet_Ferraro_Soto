@@ -221,8 +221,7 @@ public class MenuReserva {
                 Reserva reserva = new Reserva(ingreso, egreso, pax, noches, habitacion,
                         valorTotal, nombre, apellido, celular,
                         "sin detalles extra", "Recepción");
-
-                gestorReserva.agregar(reserva);
+                
 
                 System.out.println("¿Desea agregar un comentario a la reserva? S/N");
                 if(sc.nextLine().equalsIgnoreCase("s")){
@@ -230,6 +229,8 @@ public class MenuReserva {
                     String comentario = sc.nextLine();
                     gestorReserva.generarComentario(comentario, reserva);
                 }
+
+                gestorReserva.agregar(reserva);
 
                 System.out.println("Reserva creada con éxito!");
                 System.out.println(reserva);

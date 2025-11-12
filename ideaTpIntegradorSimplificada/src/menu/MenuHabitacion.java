@@ -3,7 +3,9 @@ package menu;
 import claseHotel.Hotel;
 import clases.Habitacion;
 import clases.Reserva;
+import excepcions.ElementoNuloException;
 import excepcions.ListaVaciaException;
+import excepcions.NumeroHabitacionInvalidoException;
 import excepcions.PrecioInvalidoException;
 import gestor.GestorHabitacion;
 import gestor.GestorReserva;
@@ -32,6 +34,7 @@ public class MenuHabitacion {
             System.out.println("  7. Rebajar valor de las habitaciones");
             System.out.println("  8. Listar habitaciones sin reservas");
             System.out.println("  9. Ordenar habitaciones por capacidad");
+            System.out.println("  10.Modificar habitacion");
             System.out.println("----------------------------------------------");
             System.out.println("  0. Volver al menú principal");
             System.out.println("==============================================");
@@ -73,6 +76,9 @@ public class MenuHabitacion {
                     break;
                 case 9:
                     ordenarPorCapacidad(gestorHabitacion);
+                    break;
+                case 10:
+                    modificarHabitacion(sc,gestorHabitacion);
                     break;
                 case 0:
                     continuar = false;
@@ -420,6 +426,55 @@ public class MenuHabitacion {
         }
     }
 
+    public static void modificarHabitacion(Scanner sc,GestorHabitacion gestorHabitacion){
+
+        try {
+
+            System.out.println("Ingrese numero de habitacion a modificar:");
+            int numHabitacion = Integer.parseInt(sc.nextLine());
+
+            Habitacion habitacionModificar = gestorHabitacion.buscarHabitacionXnum(numHabitacion);
+
+            if(habitacionModificar == null){
+                throw new ElementoNuloException("Habitacion no encontrada...");
+            }
+
+            System.out.println("Habitacion a modificar:");
+            System.out.println(habitacionModificar);
+
+            System.out.println("Ingrese el tipo:");
+            String tipo = sc.nextLine();
+
+            System.out.println("Ingrese el precio");
+            double precio = Double.parseDouble(sc.nextLine());
+
+            if(precio<= 0){
+                throw new PrecioInvalidoException("Precio invalido...");
+            }
+
+            System.out.println("Ingrese el descripcion:");
+            String descripcion = sc.nextLine();
+
+            System.out.println("Ingrese capacidad maxima");
+            int capacidadMaxima = Integer.parseInt(sc.nextLine());
+
+            if(capacidadMaxima<=0){
+                throw new NumeroHabitacionInvalidoException("La capacidad maxima debe ser mayor que 0");
+            }
+
+            gestorHabitacion.modificarHabitacion(habitacionModificar,tipo,capacidadMaxima,precio,descripcion);
+
+        }catch (ListaVaciaException e){
+            System.out.println(e.getMessage());
+        }catch (NumberFormatException e){
+            System.out.println("Numero invalido...");
+        }catch (ElementoNuloException e){
+            System.out.println(e.getMessage());
+        }catch (PrecioInvalidoException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 
 }
