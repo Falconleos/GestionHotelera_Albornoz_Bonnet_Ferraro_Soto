@@ -23,7 +23,7 @@ public class GestorCuenta extends Gestor<Cuenta>{
 
     public Cuenta devorlverCuentaXestadia(Estadia estadia){
         for (Cuenta c : lista){
-            if (c.getEstadia().getIdEstadia() == estadia.getIdEstadia()){
+            if (c.getEstadia().equals(estadia)){
                 return c;
             }
         }

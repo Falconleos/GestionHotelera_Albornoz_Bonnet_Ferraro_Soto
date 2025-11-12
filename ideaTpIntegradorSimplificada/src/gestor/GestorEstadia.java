@@ -25,7 +25,12 @@ public class GestorEstadia extends Gestor<Estadia>{
         validarListaVacia();
 
         for (Estadia estadia : lista) {
-            if (estadia.getNumHabitacion() == numHabitacion) {
+            if (estadia.getNumHabitacion() == numHabitacion &&
+                    (estadia.getFechaCheckIn().isEqual(LocalDate.now()) ||
+                            (estadia.getFechaCheckIn().isBefore(LocalDate.now()) && estadia.getFechaCheckOut().equals(LocalDate.now())) ||
+                                estadia.getFechaCheckOut().isAfter(LocalDate.now())
+                    )
+            ){
                 return estadia;
             }
         }

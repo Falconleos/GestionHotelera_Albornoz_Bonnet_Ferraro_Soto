@@ -77,7 +77,16 @@ public class MenuPago {
                 throw new ElementoNuloException("No existe estadia con ese numero de habitacion/Revisar numero de habitacion o estadias");
             }
 
+            System.out.println("estadia");
+            System.out.println(estadiaEncontrada);
+
+
             Cuenta cuentaSeleccionada = gestorCuenta.devorlverCuentaXestadia(estadiaEncontrada);
+
+            if (cuentaSeleccionada == null){
+                throw new ElementoNuloException("Cuenta no encontrada");
+            }
+
             System.out.println(cuentaSeleccionada);
 
             TipoPago tipoPago = null;

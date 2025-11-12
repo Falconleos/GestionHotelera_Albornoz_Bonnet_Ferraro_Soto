@@ -136,24 +136,25 @@ public class MenuReserva {
             List<Habitacion> candidatas = gestorHabitacion.listarHabitacionesXcapacidad(pax);
             List<Habitacion> disponibles = new ArrayList<>();
 
-            for(Habitacion h : candidatas){
+            for (Habitacion h : candidatas) {
                 boolean disponible = true;
 
-                for(Reserva r : gestorReserva.getLista()){
-                    if(r.getHabitacion().equals(h)){
+                for (Reserva r : gestorReserva.getLista()) {
+                    if (r.getHabitacion().getNumero() == h.getNumero()) {
 
-                        boolean noSolapa =
-                                egreso.isBefore(r.getFechaIngreso()) || egreso.isEqual(r.getFechaIngreso()) ||
-                                        ingreso.isAfter(r.getFechaEgreso()) || ingreso.isEqual(r.getFechaEgreso());
+                        // ✅ Verificar solapamiento real
+                        boolean seSolapan =
+                                ingreso.isBefore(r.getFechaEgreso()) &&  // empieza antes de que termine la otra
+                                        egreso.isAfter(r.getFechaIngreso());     // termina después de que empieza la otra
 
-                        if(!noSolapa){
+                        if (seSolapan) {
                             disponible = false;
                             break;
                         }
                     }
                 }
 
-                if(disponible){
+                if (disponible) {
                     disponibles.add(h);
                 }
             }

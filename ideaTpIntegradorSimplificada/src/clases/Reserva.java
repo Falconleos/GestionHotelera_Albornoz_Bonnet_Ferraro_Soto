@@ -4,6 +4,7 @@ import interfaces.I_IdInicializable;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 public class Reserva implements I_IdInicializable {
     private static int contador = 1;
@@ -157,4 +158,14 @@ public class Reserva implements I_IdInicializable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Reserva reserva)) return false;
+        return idReserva == reserva.idReserva && pax == reserva.pax && cantidadNoches == reserva.cantidadNoches && Double.compare(valor, reserva.valor) == 0 && Objects.equals(fechaIngreso, reserva.fechaIngreso) && Objects.equals(fechaEgreso, reserva.fechaEgreso) && Objects.equals(habitacion, reserva.habitacion) && Objects.equals(nombreReferencia, reserva.nombreReferencia) && Objects.equals(apellidoReferencia, reserva.apellidoReferencia) && Objects.equals(celularReferencia, reserva.celularReferencia) && Objects.equals(detallesExtra, reserva.detallesExtra) && Objects.equals(personalResponsable, reserva.personalResponsable);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idReserva, fechaIngreso, fechaEgreso, pax, cantidadNoches, habitacion, valor, nombreReferencia, apellidoReferencia, celularReferencia, detallesExtra, personalResponsable);
+    }
 }
