@@ -395,21 +395,25 @@ public class MenuEstadia {
             System.out.println("Ingrese habitacion: ");
             int numHabitacion = Integer.parseInt(sc.nextLine());
 
+            System.out.println("Ingrese el apellido");
+            String apellidoCliente = sc.nextLine();
+
             if(numHabitacion<0){
                 throw new NumberFormatException("Habitacion invalida.");
             }
 
-            Estadia estadiaEncontrada = gestorEstadia.buscarEstadiaXHabitacion(numHabitacion);
+
+            Estadia estadiaEncontrada = gestorEstadia.buscarEstadiaXHabitacionXapellido(numHabitacion,apellidoCliente);
 
             if(estadiaEncontrada == null){
-                throw new ElementoNuloException("No existe estadia con ese numero de habitacion/Revisar numero de habitacion o estadias");
+                throw new ElementoNuloException("No existe estadia con ese numero de habitacion/apellido");
             }
 
             System.out.println("Estadia:");
             System.out.println(estadiaEncontrada);
             //busco la cuenta y verifico que la cuenta este saldada
 
-            Cuenta cuentaSeleccionada = gestorCuenta.devorlverCuentaXestadia(estadiaEncontrada);
+            Cuenta cuentaSeleccionada = gestorCuenta.cuentaPorApellidoYhabitacion(apellidoCliente,numHabitacion);
             System.out.println(cuentaSeleccionada);
 
 
