@@ -451,7 +451,7 @@ public class MenuEstadia {
         }catch(ListaVaciaException e){
             System.out.println(e.getMessage());
         }catch(NumberFormatException e){
-            System.out.println(e.getMessage());
+            System.out.println("Dato ingresado incorrecto...");
         }catch(AccionInvalidaException e){
             System.out.println(e.getMessage());
         }
