@@ -177,7 +177,9 @@ public class MenuEstadia {
 
             }
 
-
+            if(reservaSeleccionada.getFechaIngreso().isAfter(LocalDate.now())){
+                throw new AccionInvalidaException("\nNo se puede crear la estadia hasta el dia del check in");
+            }
 
             // 2️⃣ Manejo del cliente (igual que antes)
             Cliente clienteSeleccionado = null;
@@ -304,11 +306,14 @@ public class MenuEstadia {
 
             // creacion de la cuenta automaticamente...
             Cuenta cuenta = new Cuenta(estadia,totalCuenta);
+
             gestorCuenta.agregar(cuenta);
             gestorEstadia.agregar(estadia);
             System.out.println("🎉 Estadía y cuenta creada exitosamente! Habitación: " + numHabitacion);
 
         }catch (ListaVaciaException e) {
+            System.out.println(e.getMessage());
+        }catch (AccionInvalidaException e){
             System.out.println(e.getMessage());
         }
 

@@ -17,7 +17,6 @@ public class GestorReserva extends Gestor<Reserva>{
         }
     }
 
-    
 
     public List<Reserva> listarXapellidoReferencial(String apellido){
         validarListaVacia();
