@@ -47,8 +47,6 @@ public class MenuPago {
                     buscarPagoPorApellido(sc,gestorPago);
                     break;
                 case 4:
-                    break;
-                case 5:
                     eliminarPagoPorApellido(sc,gestorPago);
                     break;
                 case 0:
