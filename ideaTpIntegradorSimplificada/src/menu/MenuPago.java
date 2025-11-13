@@ -47,7 +47,7 @@ public class MenuPago {
                     buscarPagoPorApellido(sc,gestorPago);
                     break;
                 case 4:
-                    eliminarPagoPorApellido(sc,gestorPago);
+                    eliminarPagoPorApellido(sc,gestorPago,gestorCuenta);
                     break;
                 case 0:
                     salir = true;
@@ -206,7 +206,7 @@ public class MenuPago {
         }
     }
 
-    public static void eliminarPagoPorApellido(Scanner sc,GestorPago gestorPago){
+    public static void eliminarPagoPorApellido(Scanner sc,GestorPago gestorPago,GestorCuenta gestorCuenta){
 
         try {
 
@@ -231,10 +231,15 @@ public class MenuPago {
                 int idSeleccionado = Integer.parseInt(sc.nextLine());
 
                 Pago pagoEliminar = gestorPago.elegirPagoPorId(pagosEncontrados,idSeleccionado);
+                Cuenta cuentaModificar = gestorCuenta.cuentaPorApellidoYhabitacion(apellido,pagoEliminar.getCuenta().getEstadia().getNumHabitacion());
+
+
 
                 if(pagoEliminar == null){
                     System.out.println("Id inexistente...");
                 }else {
+
+                    cuentaModificar.setPago(false);
                     gestorPago.eliminar(pagoEliminar);
                     System.out.println("Pago de " +apellido+ " eliminado correctamente...");
                 }

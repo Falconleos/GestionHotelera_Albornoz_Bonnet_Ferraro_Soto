@@ -54,6 +54,17 @@ public class GestorCuenta extends Gestor<Cuenta>{
         return  cuentasEncontradas;
     }
 
+    public Cuenta cuentaPorApellidoYhabitacion(String apellido,int numHabitacion){
+        validarListaVacia();
+        List<Cuenta> cuentasEncontrada = new ArrayList<>();
+        for(Cuenta cuenta: lista){
+            if(cuenta.getEstadia().getCliente().getApellido().equalsIgnoreCase(apellido) && cuenta.getEstadia().getNumHabitacion() == numHabitacion ){
+                return cuenta;
+            }
+        }
+        return  null;
+    }
+
     public List<Cuenta> cuentaSinAbonar(){
         validarListaVacia();
         List<Cuenta> cuentasEncontradas = new ArrayList<>();
