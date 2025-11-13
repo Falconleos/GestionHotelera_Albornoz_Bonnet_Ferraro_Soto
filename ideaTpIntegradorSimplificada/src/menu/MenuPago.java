@@ -78,7 +78,7 @@ public class MenuPago {
                 throw new ElementoNuloException("No existe estadia con ese numero de habitacion o apellido");
             }
 
-            Cuenta cuentaSeleccionada = gestorCuenta.devorlverCuentaXestadia(estadiaEncontrada);
+            Cuenta cuentaSeleccionada = gestorCuenta.cuentaPorApellidoYhabitacion(apellido,numHabitacion);
 
             if (cuentaSeleccionada == null){
                 throw new ElementoNuloException("Cuenta no encontrada");
