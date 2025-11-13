@@ -71,10 +71,13 @@ public class MenuPago {
                 throw new NumberFormatException("Habitacion invalida.");
             }
 
-            Estadia estadiaEncontrada = gestorEstadia.buscarEstadiaXHabitacion(numHabitacion);
+            System.out.println("Ingrese el apellido");
+            String apellido = sc.nextLine();
+
+            Estadia estadiaEncontrada = gestorEstadia.buscarEstadiaXHabitacionXapellido(numHabitacion,apellido);
 
             if(estadiaEncontrada == null){
-                throw new ElementoNuloException("No existe estadia con ese numero de habitacion/Revisar numero de habitacion o estadias");
+                throw new ElementoNuloException("No existe estadia con ese numero de habitacion o apellido");
             }
 
             Cuenta cuentaSeleccionada = gestorCuenta.devorlverCuentaXestadia(estadiaEncontrada);

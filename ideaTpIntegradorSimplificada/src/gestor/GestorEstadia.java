@@ -37,6 +37,20 @@ public class GestorEstadia extends Gestor<Estadia>{
         return null;
     }
 
+    public Estadia buscarEstadiaXHabitacionXapellido(int numHabitacion,String apellido) {
+        validarListaVacia();
+
+        for (Estadia estadia : lista) {
+            if (estadia.getNumHabitacion() == numHabitacion && estadia.getCliente().getApellido().equalsIgnoreCase(apellido))
+            {
+                return estadia;
+            }
+        }
+        return null;
+    }
+
+
+
 
     public List<Estadia>buscarEstadiaPorApellido(String apellido){
         validarListaVacia();
